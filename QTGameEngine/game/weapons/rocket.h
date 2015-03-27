@@ -2,6 +2,7 @@
 #define ROCKET_H
 #include "game/weapons/weapon.h"
 #include "game/resources.h"
+#include "game/particles/particleexplosion.h"
 
 class Rocket: public Weapon
 {
@@ -20,9 +21,24 @@ public:
     }
 
     void die(){
+
+        fireball = new ParticlesProcessor(Asset(PATH_FIREBALL), 5, this);
+        fireball->getItemsModifier()->rotate(5,5,true);
+        fireball->getItemsModifier()->setInitialScale(0.1);
+        fireball->getItemsModifier()->scale(0.06, 0.1);
+        fireball->getItemsModifier()->fadeAway(0.02, 0.02);
+        fireball->getItemsModifier()->setBias(-50,-50);
+        fireball->setRadius(50);
+        fireball->getItemsModifier()->moveEveryFrame(const_cast<QPointF&>(MOVE_LEFT_1));
+        fireball->setLooping(false);
+        fireball->start();
+
         playSound("bomb2");
         Weapon::die();
     }
+
+private:
+     QPointer<ParticlesProcessor> fireball;
 };
 
 #endif // ROCKET_H
