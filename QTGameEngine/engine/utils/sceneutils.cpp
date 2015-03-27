@@ -43,7 +43,7 @@ bool SceneUtils::addToScene(QGraphicsItem* item){
 }
 
 bool SceneUtils::removeFromScene(QGraphicsItem* item){
-    if (scene != NULL && item != NULL){
+    if (scene != NULL && item != NULL && item->scene() != NULL && item->scene() == scene){
         scene->removeItem(item);
         return true;
     }
