@@ -16,6 +16,7 @@ const QString PATH_STEAM = PATH_SPRITES + "steam";
 const QString PATH_STEAM_S = PATH_SPRITES + "steam_s";
 const QString PATH_DUST = PATH_SPRITES + "dust";
 const QString PATH_ROCKET_SMOKE_S = PATH_SPRITES + "smoke_s";
+const QString PATH_MOON = PATH_SPRITES + "moon";
 const QString PATH_CLOUD = PATH_SPRITES + "cloud";
 const QString PATH_CLOUD2 = PATH_SPRITES + "cloud2";
 const QString PATH_CLOUD3 = PATH_SPRITES + "cloud3";

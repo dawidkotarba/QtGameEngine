@@ -46,7 +46,8 @@ HEADERS  += \
     game/weapons/enemyrocket.h \
     engine/utils/soundutils.h \
     game/enemies/ufo2.h \
-    game/enemies/ufo3.h
+    game/enemies/ufo3.h \
+    game/environment/moon.h
 
 SOURCES += \
     engine\main.cpp \

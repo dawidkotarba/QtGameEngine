@@ -17,6 +17,7 @@
 #include "game/enemies/ufo3.h"
 #include "engine/items/itemspawner.h"
 #include "engine/items/itemsmodifier.h"
+#include "game/environment/moon.h"
 #include "game/environment/clouds.h"
 #include "game/environment/stars.h"
 #include "game/enemies/asteroid.h"
@@ -49,7 +50,7 @@ private:
     // environment
     QPointer<ItemSpawner<Star16> > envStar16;
     QPointer<ItemSpawner<Star32> > envStar32;
-
+    QPointer<ItemSpawner<Moon> > envMoon;
     QPointer<ItemSpawner<Cloud> > envCloud;
     QPointer<ItemSpawner<Cloud2> > envCloud2;
     QPointer<ItemSpawner<Cloud3> > envCloud3;

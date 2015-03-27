@@ -1,9 +1,9 @@
 #include "window.h"
 
 Window::Window(QObject* parent){
-     splash = new Splash();
-     splash->show();
-     qDebug() << "Loading main window.";
+    splash = new Splash();
+    splash->show();
+    qDebug() << "Loading main window.";
 
     // main window props
     if (USE_OPENGL)
@@ -86,7 +86,7 @@ void Window::initActors(){
 
     enemiesShip = new ItemSpawner<Ship>(30,1200,SceneUtils::getInstance().getTranslatedWidth(25), QPoint(SceneUtils::getInstance().getTranslatedWidth(50),SceneUtils::getInstance().getTranslatedHeight(50)));
     enemiesShip->start();
- }
+}
 
 void Window::deleteActors(){
     qDebug() <<  "Deleting actors:";
@@ -100,6 +100,8 @@ void Window::deleteActors(){
 }
 
 void Window::initBackgroundEnvironment(){
+
+    // stars
     envStar16 = new ItemSpawner<Star16>(10, 100, 150, QPoint(SceneUtils::getInstance().getTranslatedWidth(0),SceneUtils::getInstance().getTranslatedHeight(30)));
     envStar16->getItemsModifier()->moveEveryFrame(const_cast<QPointF&>(MOVE_LEFT_02));
     envStar16->getItemsModifier()->setRepeatable(true);
@@ -112,6 +114,13 @@ void Window::initBackgroundEnvironment(){
     envStar32->getItemsModifier()->shallBlink(true, 10, 20);
     envStar32->start();
 
+    // moon
+    envMoon = new ItemSpawner<Moon>(2, 1200, 0, QPoint(SceneUtils::getInstance().getTranslatedWidth(80),SceneUtils::getInstance().getTranslatedHeight(10)));
+    envMoon->getItemsModifier()->moveEveryFrame(const_cast<QPointF&>(MOVE_LEFT_02));
+    envMoon->getItemsModifier()->setRepeatable(true);
+    envMoon->start();
+
+    // clouds
     envCloud3 = new ItemSpawner<Cloud3>(10, 400, 200, QPoint(SceneUtils::getInstance().getTranslatedWidth(0),SceneUtils::getInstance().getTranslatedHeight(50)));
     envCloud3->getItemsModifier()->moveEveryFrame(const_cast<QPointF&>(MOVE_LEFT_03));
     envCloud3->getItemsModifier()->setRepeatable(true);
