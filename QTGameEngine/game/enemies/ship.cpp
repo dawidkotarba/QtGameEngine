@@ -22,6 +22,7 @@ void Ship::move(){
     if (x < SceneUtils::getInstance().getTranslatedWidth(50)){
         y+=posYBias;
         x-=2;
+        rotate(5);
     }
 
     setPos(x,y);
