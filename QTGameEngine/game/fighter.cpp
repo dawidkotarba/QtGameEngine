@@ -2,12 +2,9 @@
 
 Fighter::Fighter():
     Item(Asset(PATH_FIGHTER), FIGHTER_INIT_POSITION),
-    isGoingLeft(false),
-    isGoingRight(false),
-    isGoingUp(false),
-    isGoingDown(false),
-    currentWeapon(WeaponsEnum(BULLET)),
-    fireRate(0){
+    currentWeapon(WeaponsEnum(BULLET)){
+    stopGoing();
+    stopFiring();
     animationProcessor->shallRandomPictures(true);
     itemId = FIGHTER_ID;
     controlId = FIGHTER_CONTROL_ID;
@@ -20,9 +17,6 @@ Fighter::Fighter():
 Fighter::~Fighter(){
     clear_qptr(particles);
     clear_qptr(stoppedImage);
-}
-
-void Fighter::testArea(){
 }
 
 void Fighter::initParticles(){
@@ -59,9 +53,10 @@ void Fighter::action(){
         fadeAway(0.02);
         rotate(10);
         scale(-0.01);
+        stopFiring();
     }
     else if (currentOpacity <= 0){
-        setPos(QPoint(0,0));
+        setPos(FIGHTER_INIT_POSITION);
         resetTransformation();
         health = 100;
         particles->start();
@@ -70,14 +65,14 @@ void Fighter::action(){
     QList<QPointer<Item> > collisions = getCollidingItems();
 
     if (!collisions.isEmpty())
-    foreach (QPointer<Item> col, collisions)
-        if (col->isDestroyable()){
-            decreaseHealth(100);
-            col->decreaseHealth(100);
-            die();
-            playSound("bomb2");
-            return;
-        }
+        foreach (QPointer<Item> col, collisions)
+            if (col->isDestroyable()){
+                decreaseHealth(100);
+                col->decreaseHealth(100);
+                die();
+                playSound("bomb2");
+                return;
+            }
 
     fire();
 }
@@ -98,6 +93,13 @@ void Fighter::go(DirectionsEnum direction){
         moveBy(acceleration, 0);
         break;
     }
+}
+
+void Fighter::stopGoing(){
+    isGoingUp = false;
+    isGoingDown = false;
+    isGoingLeft = false;
+    isGoingRight = false;
 }
 
 void Fighter::controlKeyPress(QKeyEvent* event){
@@ -121,7 +123,7 @@ void Fighter::controlKeyPress(QKeyEvent* event){
             isGoingDown = true;
             isGoingUp = false;
             break;
-        case Qt::Key_Shift:           
+        case Qt::Key_Control:
             currentWeapon = WeaponsEnum(ROCKET);
             fireRate = WEAPON_ROCKET_FIRE_RATE;
             break;
@@ -155,11 +157,11 @@ void Fighter::controlKeyRelease(QKeyEvent* event){
         case Qt::Key_Down:
             isGoingDown = false;
             break;
-        case Qt::Key_Shift:
-            fireRate = 0;
+        case Qt::Key_Control:
+            stopFiring();
             break;
         case Qt::Key_Space:
-            fireRate = 0;
+            stopFiring();
             break;
         }
 
@@ -174,16 +176,20 @@ void Fighter::fire(){
         QPointer<Weapon> weapon;
 
         switch(currentWeapon){
-            case BULLET:
-                weapon = new Bullet(this);
-                break;
-             case ROCKET:
-                weapon = new Rocket(this);
-                break;
+        case BULLET:
+            weapon = new Bullet(this);
+            break;
+        case ROCKET:
+            weapon = new Rocket(this);
+            break;
         }
         if (weapon)
             weapon->start();
     }
+}
+
+void Fighter::stopFiring(){
+    fireRate = 0;
 }
 
 void Fighter::die(){

@@ -19,13 +19,14 @@ public:
     virtual void controlKeyRelease(QKeyEvent* event);
 
     void go(DirectionsEnum direction);
+    void stopGoing();
     void fire();
+    void stopFiring();
     bool isMoving();
 
 private:
     void move();
     void action();
-    void testArea();
     void initParticles();
     void die();
     void stop();
