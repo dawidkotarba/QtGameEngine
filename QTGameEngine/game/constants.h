@@ -1,0 +1,60 @@
+#ifndef GAME_CONSTANTS_H
+#define GAME_CONSTANTS_H
+#include <QPoint>
+
+// fighter
+const QPoint FIGHTER_INIT_POSITION(0,0);
+const QPoint FIGHTER_SPEED(0,0);
+const int FIGHTER_ACCELERATION = 7;
+const int FIGHTER_ID = 1;
+const int FIGHTER_CONTROL_ID = 1;
+const int FIGHTER_HEALTH = 100;
+const int FIGHTER_PARTICLES_BIAS_X = -15;
+const int FIGHTER_PARTICLES_BIAS_Y = 3;
+
+// weapons
+const int WEAPON_DEFAULT_DAMAGE = 50;
+
+const int WEAPON_ROCKET_FIRE_RATE = 30;
+const int WEAPON_ROCKET_SPEED = 10;
+const int WEAPON_ROCKET_DAMAGE = 500;
+const int WEAPON_ROCKET_PARTICLE_BIAS_X = 0;
+const int WEAPON_ROCKET_PARTICLE_BIAS_Y = -2;
+const int WEAPON_ROCKET_BIAS_X = 50;
+const int WEAPON_ROCKET_BIAS_Y = 7;
+
+const int WEAPON_BULLET_FIRE_RATE = 12;
+const int WEAPON_BULLET_DAMAGE = 30;
+const int WEAPON_BULLET_SPEED = 15;
+const int WEAPON_BULLET_BIAS_X = 50;
+const int WEAPON_BULLET_BIAS_Y = 26;
+
+const int ENEMY_WEAPON_ROCKET_SPEED = -10;
+const int ENEMY_WEAPON_ROCKET_BIAS_X = -50;
+const int ENEMY_WEAPON_ROCKET_BIAS_Y = 30;
+
+// enemies
+const int ENEMY_UFO_PARTICLES_BIAS = -50;
+const int ENEMY_UFO_EXPLOSION_BIAS = -40;
+const int ENEMY_UFO_SPEED = 5;
+const int ENEMY_UFO_SIN_FACTOR = 50;
+const int ENEMY_UFO_SIN_BIAS = 10;
+
+const int ENEMY_UFO2_SPEED = 10;
+const int ENEMY_UFO2_SIN_FACTOR = 150;
+const int ENEMY_UFO2_SIN_BIAS = 1;
+
+const int ENEMY_UFO3_SPEED = -12;
+
+const int ENEMY_ASTEROID_SPEED = -1;
+const int ENEMY_ASTEROID_HEALTH = 300;
+const int ENEMY_ASTEROID_CHILD_HEALTH = 200;
+const int ENEMY_ASTEROID_CHILDREN_COUNT = 3;
+const int ENEMY_ASTEROID_ROTATION = 1;
+const int ENEMY_ASTEROID_CHILDREN_ROTATION = 5;
+
+const int ENEMY_SHIP_SPEED = 6;
+const int ENEMY_SHIP_HEALTH = 150;
+const int ENEMY_SHIP_PARTICLES_BIAS = -50;
+
+#endif // GAME_CONSTANTS_H
