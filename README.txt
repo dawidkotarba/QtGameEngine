@@ -1,4 +1,4 @@
-2D Game Engine created in QT Framework. Development still in progress.
+2D Game Engine prototype created in QT Framework.
 - code: Dawid Kotarba
 - graphics: Dawid Kotarba
 - sounds:
