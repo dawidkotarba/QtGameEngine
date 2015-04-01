@@ -325,9 +325,8 @@ void Item::paintLightEffect(){
     if (!shallAddLightEffect || painterPtr == NULL)
         return;
 
-    QPoint updatedPos(pos().x()+biasX, pos().y()+biasY);
+    QPoint updatedPos(pos().x()+lightBiasX, pos().y()+lightBiasY);
 
-    painterPtr->save();
     painterPtr->setCompositionMode(QPainter::CompositionMode_Plus);
     painterPtr->setPen(Qt::NoPen);
 
