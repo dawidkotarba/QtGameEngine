@@ -8,6 +8,7 @@ Weapon::Weapon(QPointer<Item> owner, Asset itemAsset, QPoint speed):
     setSpeed(speed);
     setPos(owner->pos());
     animationProcessor->setLooping(true);
+    addLightEffect(50);
 }
 
 
@@ -20,7 +21,6 @@ Weapon::~Weapon(){
     clear_qptr(particles);
     clear_qptr(explParticles);
     clear_qptr(explosion);
-
 }
 
 void Weapon::start(){

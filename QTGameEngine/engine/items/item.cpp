@@ -30,7 +30,12 @@ Item::Item():
     boundingRectHeightBias(0),
     enemy(false),
     markedAsForDelete(false),
-    started(false){
+    started(false),
+    painterPtr(NULL),
+    shallAddLightEffect(false),
+    lightRadius(0),
+    lightBiasX(0),
+    lightBiasY(0){
     setPos(ITEM_ZERO_POS);
     resetTransformation();
     MemoryManager::getInstance().addToItemsList(this);
@@ -134,7 +139,6 @@ void Item::advance(int step){
     if (shallCalculateTransformOP)
         setTransformOriginPoint(calculateTransformOriginPoint());
 
-    testArea();
     move();
     moveBy(moveBias.x(), moveBias.y());
     processTransformation();
@@ -270,6 +274,9 @@ QPainterPath Item::shape() const {
 
 void Item::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) {
 
+    if (painterPtr == NULL)
+        painterPtr = painter;
+
     if (blinks){
         int blinkFrame = Utils::getInstance().randInt(blinkMinFrequency, blinkMaxFrequency);
         if (blinkFrame > 0 && TimerUtils::getInstance().countEachFrame(blinkFrame))
@@ -291,9 +298,11 @@ void Item::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWid
                 forcePaint = true;
 
             painter->drawImage(pos(), *currentImage);
+            paintLightEffect();
+
         }
         else
-            qDebug() << "Cannot paint img of item " << itemId;
+            qWarning() << "Cannot paint img of item " << itemId;
     }
 }
 
@@ -310,6 +319,30 @@ QList<QPointer<Item> > Item::getCollidingItems(){
             }
         }
     return items;
+}
+
+void Item::paintLightEffect(){
+    if (!shallAddLightEffect || painterPtr == NULL)
+        return;
+
+    QPoint updatedPos(pos().x()+biasX, pos().y()+biasY);
+
+    painterPtr->save();
+    painterPtr->setCompositionMode(QPainter::CompositionMode_Plus);
+    painterPtr->setPen(Qt::NoPen);
+
+    QRadialGradient light(updatedPos, lightRadius ,updatedPos);
+    light.setColorAt(0.0f, QColor(255,200,75,25+qrand()%75));
+    light.setColorAt(1.0f, QColor(255,255,255,0));
+    painterPtr->setBrush(light);
+    painterPtr->drawEllipse(updatedPos,lightRadius,lightRadius);
+}
+
+void Item::addLightEffect(int radius, int biasX, int biasY){
+    shallAddLightEffect = true;
+    lightRadius = radius;
+    lightBiasX = biasX;
+    lightBiasY = biasY;
 }
 
 void Item::setPercentPosition(QPoint& position){

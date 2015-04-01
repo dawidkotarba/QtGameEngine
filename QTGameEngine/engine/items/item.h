@@ -88,6 +88,7 @@ public:
     bool isEnemy();
     void setBoundingRectDividers(qreal width, qreal height);
     void setBoundingRectBias(int width, int height);
+    void addLightEffect(int radius, int biasX = 0, int biasY = 0);
 
 protected:
     void advance(int step);
@@ -95,7 +96,6 @@ protected:
     void playSound(const QString& fileName, int volume = 100);
     void repeat();
     virtual void move();
-    virtual void testArea(){}
     virtual void action(){}
     virtual void die();
     QPointer<AnimationProcessor> animationProcessor;
@@ -132,6 +132,14 @@ protected:
     qreal currentScale;
     qreal initialOpacity;
     qreal initialScale;
+
+    // light effects
+    void paintLightEffect();
+    QPainter* painterPtr;
+    bool shallAddLightEffect;
+    int lightRadius;
+    int lightBiasX;
+    int lightBiasY;
 
 private:
     QRectF boundingRect() const;
