@@ -13,6 +13,7 @@ public:
         QPoint speed(ENEMY_WEAPON_ROCKET_SPEED,0);
         setSpeed(speed);
         setBias(ENEMY_WEAPON_ROCKET_BIAS_X, ENEMY_WEAPON_ROCKET_BIAS_Y);
+        addLightEffect(100, 50, 10);
     }
 
     void action(){

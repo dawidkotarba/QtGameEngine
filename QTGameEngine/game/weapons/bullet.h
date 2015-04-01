@@ -10,6 +10,7 @@ public:
         setBias(WEAPON_BULLET_BIAS_X, WEAPON_BULLET_BIAS_Y);
         damage = WEAPON_BULLET_DAMAGE;
         playSound("laser");
+        addLightEffect(50, 90, 10);
     }
 
     void die(){

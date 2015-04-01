@@ -14,7 +14,7 @@ Window::Window(QObject* parent){
     if (USE_ANTYALIASING)
         setRenderHint(QPainter::Antialiasing);
 
-    setBackgroundBrush(QBrush(BG_COLOR, Qt::CrossPattern));
+    setBackgroundBrush(QBrush(BG_COLOR, Qt::SolidPattern));
     setCacheMode(QGraphicsView::CacheBackground);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);

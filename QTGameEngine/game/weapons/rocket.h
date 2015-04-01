@@ -18,6 +18,7 @@ public:
 
         damage = WEAPON_ROCKET_DAMAGE;
         playSound("swoosh");
+        addLightEffect(100, 50, 10);
     }
 
     void die(){
