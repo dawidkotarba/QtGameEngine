@@ -48,19 +48,19 @@ public:
         ItemUtils::getInstance().start(items);
     }
 
-    void setVisible( boolean value){
+    void setVisible(boolean value){
        ItemUtils::getInstance().setVisible(items, value);
     }
 
-    void setStarted( boolean value){
+    void setStarted(boolean value){
        ItemUtils::getInstance().setStarted(items, value);
     }
 
-    void setPos( QPointF& pos){
+    void setPos(QPointF& pos){
        ItemUtils::getInstance().setPos(items, pos);
     }
 
-    void setBias( qreal x, qreal y){
+    void setBias(qreal x, qreal y){
         ItemUtils::getInstance().setBias(items, x, y);
     }
 
@@ -74,6 +74,10 @@ public:
 
     void shallBlink(bool value, int minFrequency, int maxFrequency){
         ItemUtils::getInstance().shallBlink(items, value, minFrequency, maxFrequency);
+    }
+
+    void addLightEffect(int radius, int biasX = 0, int biasY = 0){
+        ItemUtils::getInstance().addLightEffect(items, radius, biasX, biasY);
     }
 
 private:
