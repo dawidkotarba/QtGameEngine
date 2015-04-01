@@ -32,6 +32,7 @@ public:
         fireball->setRadius(50);
         fireball->getItemsModifier()->moveEveryFrame(const_cast<QPointF&>(MOVE_LEFT_1));
         fireball->setLooping(false);
+        fireball->getItemsModifier()->addLightEffect(500,250,250);
         fireball->start();
 
         playSound("bomb2");
@@ -39,7 +40,7 @@ public:
     }
 
 private:
-     QPointer<ParticlesProcessor> fireball;
+    QPointer<ParticlesProcessor> fireball;
 };
 
 #endif // ROCKET_H

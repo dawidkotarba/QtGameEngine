@@ -11,13 +11,13 @@ class ParticleExplosion : public ParticleExplosionDust {
 
 public:
     ParticleExplosion(QPointer<Item> owner, qreal bias = 0):
-    ParticleExplosionDust(owner, bias){
-       initFireballs(owner, PATH_FIREBALL, PATH_FIREBALL2, bias);
+        ParticleExplosionDust(owner, bias){
+        initFireballs(owner, PATH_FIREBALL, PATH_FIREBALL2, bias);
     }
 
     ParticleExplosion(QPointer<Item> owner, const QString fireBallPath1, const QString fireBallPath2, qreal bias = 0):
-    ParticleExplosionDust(owner, bias){
-       initFireballs(owner, fireBallPath1, fireBallPath2, bias);
+        ParticleExplosionDust(owner, bias){
+        initFireballs(owner, fireBallPath1, fireBallPath2, bias);
     }
 
     virtual ~ParticleExplosion(){
@@ -37,6 +37,7 @@ private:
         fireball->getItemsModifier()->scale(0.04, 0.04);
         fireball->getItemsModifier()->fadeAway(0.02, 0.02);
         fireball->getItemsModifier()->moveEveryFrame(const_cast<QPointF&>(MOVE_LEFT_1));
+        fireball->getItemsModifier()->addLightEffect(500,250,250);
         fireball->setLooping(false);
         fireball->start();
 
@@ -46,6 +47,7 @@ private:
         fireball2->getItemsModifier()->scale(0.05, 0.10);
         fireball2->getItemsModifier()->fadeAway(0.02, 0.08);
         fireball2->getItemsModifier()->moveEveryFrame(const_cast<QPointF&>(MOVE_LEFT_1));
+        fireball2->getItemsModifier()->addLightEffect(500,250,250);
         fireball2->setLooping(false);
         fireball2->setRadius(3);
         fireball2->start();
