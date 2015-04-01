@@ -55,6 +55,7 @@ void Weapon::die(){
     explParticles->getItemsModifier()->fadeAway(0.03, 0.05);
     explParticles->setLooping(false);
     explParticles->setRadius(0);
+    explParticles->getItemsModifier()->addLightEffect(300, 50, 50);
     explParticles->start();
 
     Item::die();
