@@ -72,7 +72,7 @@ void ParticlesProcessor::advance(int step){
             particle = particles.at(lastUpdatedParticle);
 
         if (particle && !particle->isVisible()){
-            particle->resetTransformation();
+            particle->resetTransform();
 
             position = calculateRelativePos(particle);
             particle->setPos(position);

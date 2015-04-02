@@ -48,7 +48,7 @@ void ItemEffect::apply(QPainter* painter){
     case LIGHT:
         paintLightEffect(painter);
         break;
-    case FADE_AWAY:
+    case FADE:
         fadeAway();
         break;
     case SCALE:

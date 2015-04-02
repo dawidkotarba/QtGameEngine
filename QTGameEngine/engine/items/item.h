@@ -51,12 +51,6 @@ public:
     bool isDead();
     void addEffect(ItemEffect& effect);
     void removeEffect(ItemEffectType effectType);
-    void resetTransformation();
-    void resetRotation();
-    void resetOpacity();
-    void resetScale();
-    void setInitialScale(qreal scale);
-    void setInitialOpacity(qreal opacity);
     void setBiasX(qreal value);
     void setBiasY(qreal value);
     void setBias(qreal x, qreal y);
@@ -94,6 +88,7 @@ public:
     qreal getCurrentScale();
     qreal getInitialOpacity();
     qreal getInitialScale();
+    QList<ItemEffect> getTransformationEffects();
 
 protected:
     void advance(int step);
@@ -131,12 +126,6 @@ protected:
     QList<ItemEffect> transformationEffects;
     ItemEffect* lightEffect;
     QPoint calculateTransformOriginPoint();
-    bool shallCalculateTransformOP;
-    int currentRotationAngle;
-    qreal currentOpacity;
-    qreal currentScale;
-    qreal initialOpacity;
-    qreal initialScale;
 
 private:
     QRectF boundingRect() const;

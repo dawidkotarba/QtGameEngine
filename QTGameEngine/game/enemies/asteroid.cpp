@@ -34,9 +34,9 @@ void Asteroid::die(){
     dustPuff = new ParticlesProcessor(Asset(PATH_BROWN_DUST), 3, this);
     dustPuff->setRadius(15);
     dustPuff->getItemsModifier()->setBias(-25,-25);
-    dustPuff->getItemsModifier()->fadeAway(0.03, 0.04);
-    dustPuff->getItemsModifier()->scale(0.02, 0.03);
-    dustPuff->getItemsModifier()->rotate(1,5, true);
+    dustPuff->getItemsModifier()->applyFadeEffect(0.03, 0.04);
+    dustPuff->getItemsModifier()->applyScaleEffect(0.02, 0.03);
+    dustPuff->getItemsModifier()->applyRotateEffect(1,5, true);
     dustPuff->getItemsModifier()->moveEveryFrame(dustMove);
     dustPuff->setLooping(false);
     dustPuff->start();

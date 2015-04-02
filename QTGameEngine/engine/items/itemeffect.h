@@ -8,7 +8,7 @@
 #include "engine/utils/timerutils.h"
 
 enum ItemEffectType {
-    FADE_AWAY,
+    FADE,
     SCALE,
     ROTATE,
     LIGHT,
@@ -28,7 +28,6 @@ public:
     void setFrameDelayValue(int frameDelayValue);
 
 private:
-    //QPointer<QGraphicsEffect> graphicsEffect;
     ItemEffectType effectType;    
     qreal effectFactorValue; // angle: rotation, speed: scale, rotate, light: radius
     int frameDelayValue;

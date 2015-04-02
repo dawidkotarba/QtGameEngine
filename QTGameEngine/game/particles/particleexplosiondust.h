@@ -15,10 +15,10 @@ public:
 
         dust = new ParticlesProcessor(Asset(PATH_DUST),3, owner);
         dust->getItemsModifier()->setBias(bias,bias);
-        dust->getItemsModifier()->rotate(5,10,true);
-        dust->getItemsModifier()->setInitialScale(0.1);
-        dust->getItemsModifier()->scale(0.01, 0.04);
-        dust->getItemsModifier()->fadeAway(0.01, 0.03);
+        dust->getItemsModifier()->applyRotateEffect(5,10,true);
+        dust->getItemsModifier()->setScale(0.1);
+        dust->getItemsModifier()->applyScaleEffect(0.01, 0.04);
+        dust->getItemsModifier()->applyFadeEffect(0.01, 0.03);
         dust->getItemsModifier()->moveEveryFrame(dustMove);
         dust->setLooping(false);
         dust->setRadius(20);
@@ -26,10 +26,10 @@ public:
 
         dust2 = new ParticlesProcessor(Asset(PATH_STEAM),2, owner);
         dust2->getItemsModifier()->setBias(bias,bias);
-        dust2->getItemsModifier()->rotate(2,3,true);
-        dust2->getItemsModifier()->setInitialScale(0.1);
-        dust2->getItemsModifier()->scale(0.01, 0.04);
-        dust2->getItemsModifier()->fadeAway(0.01, 0.03);
+        dust2->getItemsModifier()->applyRotateEffect(2,3,true);
+        dust2->getItemsModifier()->setScale(0.1);
+        dust2->getItemsModifier()->applyScaleEffect(0.01, 0.04);
+        dust2->getItemsModifier()->applyFadeEffect(0.01, 0.03);
         dust2->getItemsModifier()->moveEveryFrame(dustMove);
         dust2->setLooping(false);
         dust2->setRadius(30);

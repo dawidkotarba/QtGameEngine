@@ -25,7 +25,7 @@ public:
             item->moveEveryFrame(move);
     }
 
-    void rotate(QList<QPointer<Item> >& items, int minAngle, int maxAngle, bool allowNegative, int interval = 1){
+    void applyRotateEffect(QList<QPointer<Item> >& items, int minAngle, int maxAngle, bool allowNegative, int interval = 1){
         foreach(QPointer<Item> item, items){
 
             int angle = Utils::getInstance().randInt(minAngle, maxAngle);
@@ -39,15 +39,15 @@ public:
         }
     }
 
-    void fadeAway(QList<QPointer<Item> >& items, qreal minSpeed, qreal maxSpeed, int interval = 1){
+    void applyFadeEffect(QList<QPointer<Item> >& items, qreal minSpeed, qreal maxSpeed, int interval = 1){
         foreach(QPointer<Item> item, items){
-            ItemEffect effect(item, ItemEffectType(FADE_AWAY), Utils::getInstance().randFloat(minSpeed, maxSpeed));
+            ItemEffect effect(item, ItemEffectType(FADE), Utils::getInstance().randFloat(minSpeed, maxSpeed));
             effect.setFrameDelayValue(interval);
             item->addEffect(effect);
         }
     }
 
-    void scale(QList<QPointer<Item> >& items, qreal minSpeed, qreal maxSpeed, int interval = 1){
+    void applyScaleEffect(QList<QPointer<Item> >& items, qreal minSpeed, qreal maxSpeed, int interval = 1){
         foreach(QPointer<Item> item, items){
             ItemEffect effect(item, ItemEffectType(SCALE), Utils::getInstance().randFloat(minSpeed, maxSpeed));
             effect.setFrameDelayValue(interval);
@@ -55,14 +55,14 @@ public:
         }
     }
 
-    void setInitialScale(QList<QPointer<Item> >& items, qreal scale){
+    void setScale(QList<QPointer<Item> >& items, qreal scale){
         foreach(QPointer<Item> item, items)
-            item->setInitialScale(scale);
+            item->setScale(scale);
     }
 
-    void setInitialOpacity(QList<QPointer<Item> >& items, qreal opacity){
+    void setOpacity(QList<QPointer<Item> >& items, qreal opacity){
         foreach(QPointer<Item> item, items)
-            item->setInitialOpacity(opacity);
+            item->setOpacity(opacity);
     }
 
     void stop(QList<QPointer<Item> >& items){

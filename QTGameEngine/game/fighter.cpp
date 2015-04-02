@@ -22,10 +22,10 @@ Fighter::~Fighter(){
 void Fighter::initParticles(){
     particles = new ParticlesProcessor(Asset(PATH_STEAM_S), 30, this);
     particles->getItemsModifier()->setBias(FIGHTER_PARTICLES_BIAS_X, FIGHTER_PARTICLES_BIAS_Y);
-    particles->getItemsModifier()->setInitialScale(0.1);
-    particles->getItemsModifier()->rotate(2, 20, true);
-    particles->getItemsModifier()->fadeAway(0.04, 0.05);
-    particles->getItemsModifier()->scale(0.04, 0.09);
+    particles->getItemsModifier()->setScale(0.1);
+    particles->getItemsModifier()->applyRotateEffect(2, 20, true);
+    particles->getItemsModifier()->applyFadeEffect(0.04, 0.05);
+    particles->getItemsModifier()->applyScaleEffect(0.04, 0.09);
     particles->setRadius(3);
     particles->setSpawnDelay(2);
     particles->start();
@@ -49,7 +49,7 @@ bool Fighter::isMoving(){
 
 void Fighter::action(){
 
-    if (currentOpacity <= 0)
+    if (opacity() <= 0)
         ressurect();
 
     QList<QPointer<Item> > collisions = getCollidingItems();
@@ -182,24 +182,33 @@ void Fighter::stopFiring(){
 }
 
 void Fighter::die(){
-    stop();
-    stopFiring();
 
-    ItemEffect fadeAway(this, ItemEffectType(FADE_AWAY), 0.02);
-    addEffect(fadeAway);
+    if (getTransformationEffects().isEmpty()){
 
-    ItemEffect rotation(this, ItemEffectType(ROTATE), 10);
-    addEffect(rotation);
+        stop();
+        stopFiring();
 
-    ItemEffect scale(this, ItemEffectType(SCALE), -0.01);
-    addEffect(scale);
+        ItemEffect fadeAway(this, ItemEffectType(FADE), 0.02);
+        addEffect(fadeAway);
+
+        ItemEffect rotation(this, ItemEffectType(ROTATE), 10);
+        addEffect(rotation);
+
+        ItemEffect scale(this, ItemEffectType(SCALE), -0.01);
+        addEffect(scale);
+    }
 }
 
 void Fighter::ressurect(){
     setPos(FIGHTER_INIT_POSITION);
-    resetTransformation();
+    resetTransform();
     health = 100;
     particles->start();
+
+    removeEffect(ItemEffectType(FADE));
+    removeEffect(ItemEffectType(ROTATE));
+    removeEffect(ItemEffectType(SCALE));
+
 }
 
 void Fighter::stop(){

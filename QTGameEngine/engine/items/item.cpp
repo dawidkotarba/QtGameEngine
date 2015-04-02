@@ -11,10 +11,7 @@ Item::Item():
     destroyable(false),
     health(ITEM_MAX_HEALTH),
     acceleration(0),
-    shallCalculateTransformOP(false),
     speed(ITEM_ZERO_POS),
-    initialScale(1),
-    initialOpacity(1),
     shallRemoveWhenOut(false),
     biasX(0),
     blinks(false),
@@ -32,7 +29,6 @@ Item::Item():
     started(false),
     lightEffect(NULL){
     setPos(ITEM_ZERO_POS);
-    resetTransformation();
     MemoryManager::getInstance().addToItemsList(this);
     SceneUtils::getInstance().addToScene(this);
 }
@@ -137,16 +133,12 @@ void Item::repeat(){
         setPos(initPos.x() + SceneUtils::getInstance().getSceneWidth(), initPos.y());
 }
 
-void Item::setInitialScale(qreal scale){
-    initialScale = scale;
-}
-
-void Item::setInitialOpacity(qreal opacity){
-    initialOpacity = opacity;
-}
-
 void Item::addEffect(ItemEffect& effect){
     transformationEffects.append(effect);
+}
+
+QList<ItemEffect> Item::getTransformationEffects(){
+    return transformationEffects;
 }
 
 void Item::removeEffect(ItemEffectType effectType){
@@ -158,33 +150,6 @@ void Item::removeEffect(ItemEffectType effectType){
         if (effect.getEffectType() == effectType)
             transformationEffects.removeAt(i);
     }
-}
-
-void Item::resetTransformation(){
-    resetTransform();
-    resetRotation();
-    resetOpacity();
-    resetScale();
-
-    setRotation(currentRotationAngle);
-    setOpacity(currentOpacity);
-    setScale(currentScale);
-
-    show();
-}
-
-void Item::resetRotation(){
-    currentRotationAngle = 0;
-}
-
-void Item::resetOpacity(){
-    currentOpacity = initialOpacity;
-}
-
-void Item::resetScale(){
-    if (itemId == IND_PARTICLE)
-        currentScale = 1e-100;
-    else currentScale = initialScale;
 }
 
 void Item::setDestroyable(bool value){
@@ -412,44 +377,4 @@ void Item::setBoundingRectBias(int width, int height){
 void Item::addLightEffect(int radius, int biasX, int biasY){
     lightEffect = new ItemEffect(this, ItemEffectType(LIGHT), radius);
     lightEffect->setBias(biasX, biasY);
-}
-
-int Item::getCurrentRotationAngle(){
-    return currentRotationAngle;
-}
-
-qreal Item::getCurrentOpacity(){
-    return currentOpacity;
-}
-
-qreal Item::getCurrentScale(){
-    return currentScale;
-}
-
-qreal Item::getInitialOpacity(){
-    return initialOpacity;
-}
-
-qreal Item::getInitialScale(){
-    return initialScale;
-}
-
-void Item::setCurrentRotationAngle(int currentRotationAngle){
-    this->currentRotationAngle = currentRotationAngle;
-}
-
-void Item::setCurrentOpacity(qreal currentOpacity){
-    this->currentOpacity = currentOpacity;
-}
-
-void Item::setCurrentScale(qreal currentScale){
-    this->currentScale = currentScale;
-}
-
-bool Item::getShallCalculateTransformOP(){
-    return shallCalculateTransformOP;
-}
-
-void Item::setShallCalculateTransformOP(bool shallCalculateTransformOP){
-    this->shallCalculateTransformOP = shallCalculateTransformOP;
 }

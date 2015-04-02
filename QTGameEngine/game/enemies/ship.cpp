@@ -51,10 +51,10 @@ void Ship::die(){
 void Ship::initParticles(){
     particles = new ParticlesProcessor(Asset(PATH_STEAM), 10, this);
     particles->getItemsModifier()->setBias(20, -30);
-    particles->getItemsModifier()->setInitialScale(0.2);
-    particles->getItemsModifier()->rotate(5, 5, true);
-    particles->getItemsModifier()->fadeAway(0.04, 0.05);
-    particles->getItemsModifier()->scale(0.04, 0.05);
+    particles->getItemsModifier()->setScale(0.2);
+    particles->getItemsModifier()->applyRotateEffect(5, 5, true);
+    particles->getItemsModifier()->applyFadeEffect(0.04, 0.05);
+    particles->getItemsModifier()->applyScaleEffect(0.04, 0.05);
     particles->setRadius(3);
     particles->setSpawnDelay(7);
     particles->start();

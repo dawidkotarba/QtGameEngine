@@ -20,24 +20,24 @@ public:
         ItemUtils::getInstance().moveEveryFrame(items, move);
     }
 
-    void rotate(int minAngle, int maxAngle, bool allowNegative, int interval = 1){
-        ItemUtils::getInstance().rotate(items, minAngle, maxAngle, allowNegative, interval);
+    void applyRotateEffect(int minAngle, int maxAngle, bool allowNegative, int interval = 1){
+        ItemUtils::getInstance().applyRotateEffect(items, minAngle, maxAngle, allowNegative, interval);
     }
 
-    void fadeAway(qreal minSpeed, qreal maxSpeed, int interval = 1){
-        ItemUtils::getInstance().fadeAway(items, minSpeed, maxSpeed, interval);
+    void applyFadeEffect(qreal minSpeed, qreal maxSpeed, int interval = 1){
+        ItemUtils::getInstance().applyFadeEffect(items, minSpeed, maxSpeed, interval);
     }
 
-    void scale(qreal minSpeed, qreal maxSpeed, int interval = 1){
-        ItemUtils::getInstance().scale(items, minSpeed, maxSpeed, interval);
+    void applyScaleEffect(qreal minSpeed, qreal maxSpeed, int interval = 1){
+        ItemUtils::getInstance().applyScaleEffect(items, minSpeed, maxSpeed, interval);
     }
 
-    void setInitialScale(qreal scale){
-       ItemUtils::getInstance().setInitialScale(items, scale);
+    void setScale(qreal scale){
+       ItemUtils::getInstance().setScale(items, scale);
     }
 
-    void setInitialOpacity(qreal opacity){
-       ItemUtils::getInstance().setInitialOpacity(items, opacity);
+    void setOpacity(qreal opacity){
+       ItemUtils::getInstance().setOpacity(items, opacity);
     }
 
     void stop(){

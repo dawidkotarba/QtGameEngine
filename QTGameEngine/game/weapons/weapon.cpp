@@ -49,10 +49,10 @@ void Weapon::action(){
 void Weapon::die(){
 
     explParticles = new ParticlesProcessor(Asset(PATH_YELLOW_C), 1, this);
-    explParticles->getItemsModifier()->rotate(20,30,true);
-    explParticles->getItemsModifier()->setInitialScale(1);
-    explParticles->getItemsModifier()->scale(0.01, 0.05);
-    explParticles->getItemsModifier()->fadeAway(0.03, 0.05);
+    explParticles->getItemsModifier()->applyRotateEffect(20,30,true);
+    explParticles->getItemsModifier()->setScale(1);
+    explParticles->getItemsModifier()->applyScaleEffect(0.01, 0.05);
+    explParticles->getItemsModifier()->applyFadeEffect(0.03, 0.05);
     explParticles->setLooping(false);
     explParticles->setRadius(0);
     explParticles->getItemsModifier()->addLightEffect(300, 50, 50);
