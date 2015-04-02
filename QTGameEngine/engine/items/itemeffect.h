@@ -1,6 +1,9 @@
 #ifndef ITEMEFFECT_H
 #define ITEMEFFECT_H
 #include <QGraphicsItem>
+#include <QGraphicsEffect>
+#include <QGraphicsBlurEffect>
+#include <QGraphicsDropShadowEffect>
 #include <QPainter>
 #include "engine/utils/timerutils.h"
 
@@ -8,7 +11,9 @@ enum ItemEffectType {
     FADE_AWAY,
     SCALE,
     ROTATE,
-    LIGHT
+    LIGHT,
+    BLUR,
+    SHADOW
 };
 
 class ItemEffect {
@@ -23,7 +28,8 @@ public:
     void setFrameDelayValue(int frameDelayValue);
 
 private:
-    ItemEffectType effectType;
+    //QPointer<QGraphicsEffect> graphicsEffect;
+    ItemEffectType effectType;    
     qreal effectFactorValue; // angle: rotation, speed: scale, rotate, light: radius
     int frameDelayValue;
     QGraphicsItem* owner;

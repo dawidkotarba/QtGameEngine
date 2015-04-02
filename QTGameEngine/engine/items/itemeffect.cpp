@@ -57,6 +57,12 @@ void ItemEffect::apply(QPainter* painter){
     case ROTATE:
         rotate();
         break;
+    case BLUR:
+        owner->setGraphicsEffect(new QGraphicsBlurEffect());
+        break;
+    case SHADOW:
+        owner->setGraphicsEffect(new QGraphicsDropShadowEffect());
+        break;
     }
 }
 

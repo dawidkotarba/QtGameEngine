@@ -5,7 +5,6 @@
 #include <QStyleOption>
 #include <QGraphicsItem>
 #include <QList>
-#include <QGraphicsEffect>
 #include <QMediaPlayer>
 #include <math.h>
 #include <iostream>
@@ -45,7 +44,6 @@ public:
     int getItemId();
     bool collidesWithItemType(int itemId);
     void makeMonitor();
-    void applyEffect(ImageEffect& effect);
     QPointer<AnimationProcessor> getAnimationProcessor();
     void increaseHealth(int value);
     void decreaseHealth(int value);
@@ -117,7 +115,6 @@ protected:
     int itemId;
     int controlId;
     bool monitor;
-    QPointer<QGraphicsEffect> graphicsEffect;
     int health;
     qreal biasX;
     qreal biasY;

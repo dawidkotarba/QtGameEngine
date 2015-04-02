@@ -10,7 +10,6 @@ Item::Item():
     moveBias(ITEM_ZERO_POS),
     destroyable(false),
     health(ITEM_MAX_HEALTH),
-    graphicsEffect(NULL),
     acceleration(0),
     shallCalculateTransformOP(false),
     speed(ITEM_ZERO_POS),
@@ -79,21 +78,6 @@ void Item::moveEveryFrame(QPointF& point){
 
 QPointer<AnimationProcessor> Item::getAnimationProcessor(){
     return animationProcessor;
-}
-
-void Item::applyEffect(ImageEffect& effect){
-
-    switch(effect){
-    case BLUR:
-        graphicsEffect = new QGraphicsBlurEffect();
-        break;
-    case SHADOW:
-        graphicsEffect = new QGraphicsDropShadowEffect();
-        break;
-    }
-
-    if (graphicsEffect)
-        setGraphicsEffect(graphicsEffect);
 }
 
 QPoint Item::calculateTransformOriginPoint(){
