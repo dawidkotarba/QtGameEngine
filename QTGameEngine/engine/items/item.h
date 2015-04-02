@@ -28,8 +28,8 @@ public:
         Item(asset.getPath(), asset.getImgPattern(), asset.getImgCount()){}
 
     Item(Asset asset, QPointF position):
-         Item(asset){
-         setPos(position);
+        Item(asset){
+        setPos(position);
     }
 
     virtual ~Item();
@@ -51,16 +51,13 @@ public:
     void decreaseHealth(int value);
     void setHealth(int value);
     bool isDead();
-    void transform(ItemEffect& effect);
+    void addEffect(ItemEffect& effect);
     void resetTransformation();
     void resetRotation();
     void resetOpacity();
     void resetScale();
     void setInitialScale(qreal scale);
     void setInitialOpacity(qreal opacity);
-    void rotate(int angle, int interval = 1);
-    void fadeAway(qreal speed, int interval = 1);
-    void scale(qreal speed, int interval = 1);
     void setBiasX(qreal value);
     void setBiasY(qreal value);
     void setBias(qreal x, qreal y);
@@ -88,6 +85,16 @@ public:
     void setBoundingRectDividers(qreal width, qreal height);
     void setBoundingRectBias(int width, int height);
     void addLightEffect(int radius, int biasX = 0, int biasY = 0);
+    int getCurrentRotationAngle();
+    void setCurrentRotationAngle(int currentRotationAngle);
+    void setCurrentOpacity(qreal currentOpacity);
+    void setCurrentScale(qreal currentScale);
+    bool getShallCalculateTransformOP();
+    void setShallCalculateTransformOP(bool shallCalculateTransformOP);
+    qreal getCurrentOpacity();
+    qreal getCurrentScale();
+    qreal getInitialOpacity();
+    qreal getInitialScale();
 
 protected:
     void advance(int step);
@@ -125,7 +132,6 @@ protected:
     // effects
     QList<ItemEffect> transformationEffects;
     ItemEffect* lightEffect;
-    void processTransformation();
     QPoint calculateTransformOriginPoint();
     bool shallCalculateTransformOP;
     int currentRotationAngle;
@@ -141,7 +147,7 @@ private:
     bool shallRemoveWhenOut;
     void removeWhenOut();
     bool destroyable;
-    bool repeatable;    
+    bool repeatable;
     bool markedAsForDelete;
     bool addedToScene;
     bool forcePaint;

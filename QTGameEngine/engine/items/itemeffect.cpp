@@ -1,30 +1,17 @@
 #include "itemeffect.h"
 
-ItemEffect::ItemEffect(ItemEffectType effectType, double effectFactorValue):
-    shallAddLightEffect(false),
+ItemEffect::ItemEffect(QGraphicsItem *owner, ItemEffectType effectType, qreal effectFactorValue):
+    owner(NULL),
+    frameDelayValue(1),
     biasX(0),
     biasY(0){
+    this->owner = owner;
     this->effectType = effectType;
     this->effectFactorValue = effectFactorValue;
 }
 
-ItemEffect::ItemEffect(ItemEffectType effectType, double effectFactorValue, double frameDelayValue):
-    ItemEffect(effectType, effectFactorValue){
-    this->frameDelayValue = frameDelayValue;
-}
-
-ItemEffect::ItemEffect(ItemEffectType effectType, double effectFactorValue, double frameDelayValue, QGraphicsItem* owner):
-    ItemEffect(effectType, effectFactorValue, frameDelayValue){
-
-    this->owner = owner;
-
-    if (effectType == ItemEffectType(LIGHT))
-        shallAddLightEffect = true;
-
-}
-
 void ItemEffect::paintLightEffect(QPainter *painter){
-    if (!shallAddLightEffect || painter == NULL)
+    if (effectType != ItemEffectType(LIGHT) || painter == NULL)
         return;
 
     QPoint updatedPos(owner->pos().x()+biasX, owner->pos().y()+biasY);
@@ -43,7 +30,7 @@ ItemEffectType ItemEffect::getEffectType(){
     return effectType;
 }
 
-double ItemEffect::getEffectFactorValue(){
+qreal ItemEffect::getEffectFactorValue(){
     return effectFactorValue;
 }
 
@@ -54,4 +41,61 @@ double ItemEffect::getFrameDelayValue(){
 void ItemEffect::setBias(int biasX, int biasY){
     this->biasX = biasX;
     this->biasY = biasY;
+}
+
+void ItemEffect::apply(QPainter* painter){
+    switch(effectType){
+    case LIGHT:
+        paintLightEffect(painter);
+        break;
+    case FADE_AWAY:
+        fadeAway();
+        break;
+    case SCALE:
+        scale();
+        break;
+    case ROTATE:
+        rotate();
+        break;
+    }
+}
+
+void ItemEffect::rotate(){
+    if (TimerUtils::getInstance().countEachFrame(frameDelayValue)){
+
+        qreal rotation = owner->rotation();
+
+        if (rotation > 360)
+            rotation-=360;
+
+        owner->setRotation(rotation+effectFactorValue);
+    }
+}
+
+void ItemEffect::fadeAway(){
+
+    qreal opacity = owner->opacity();
+
+    if (opacity > 0 && TimerUtils::getInstance().countEachFrame(frameDelayValue)){
+        owner->setOpacity(opacity-=effectFactorValue);
+
+        if (opacity <= 0)
+            owner->hide();
+    }
+}
+
+void ItemEffect::scale(){
+
+    qreal scale = owner->scale();
+
+    if (scale > 0 && TimerUtils::getInstance().countEachFrame(frameDelayValue)){
+        owner->setScale(scale+=effectFactorValue);
+
+        if (scale <= 0)
+            owner->hide();
+    }
+}
+
+void ItemEffect::setFrameDelayValue(int frameDelayValue){
+    this->frameDelayValue = frameDelayValue;
 }

@@ -132,12 +132,14 @@ void Item::advance(int step){
     if(health != ITEM_HEALTH_NOT_INIT && health <= 0)
         die();
 
-    if (shallCalculateTransformOP)
-        setTransformOriginPoint(calculateTransformOriginPoint());
+    setTransformOriginPoint(calculateTransformOriginPoint());
 
     move();
     moveBy(moveBias.x(), moveBias.y());
-    processTransformation();
+
+    foreach(ItemEffect effect, transformationEffects)
+        effect.apply();
+
     action();
 
     if (animationProcessor->isAnimated() && !SceneUtils::getInstance().isOutOfScene(this))
@@ -159,7 +161,7 @@ void Item::setInitialOpacity(qreal opacity){
     initialOpacity = opacity;
 }
 
-void Item::transform(ItemEffect& effect){
+void Item::addEffect(ItemEffect& effect){
     transformationEffects.append(effect);
 }
 
@@ -190,63 +192,12 @@ void Item::resetScale(){
     else currentScale = initialScale;
 }
 
-void Item::processTransformation(){
-    foreach(ItemEffect effect, transformationEffects){
-        switch(effect.getEffectType()){
-        case FADE_AWAY:
-            fadeAway(effect.getEffectFactorValue(), effect.getFrameDelayValue());
-            break;
-        case SCALE:
-            scale(effect.getEffectFactorValue(), effect.getFrameDelayValue());
-            break;
-        case ROTATE:
-            rotate(effect.getEffectFactorValue(), effect.getFrameDelayValue());
-            break;
-        }
-    }
-}
-
-void Item::rotate(int angle, int interval){
-    if (TimerUtils::getInstance().countEachFrame(interval)){
-        shallCalculateTransformOP = true;
-
-        if (!(currentRotationAngle > 360))
-            currentRotationAngle-=360;
-
-        currentRotationAngle+=angle;
-
-        setRotation(currentRotationAngle);
-    }
-}
-
 void Item::setDestroyable(bool value){
     destroyable = value;
 }
 
 bool Item::isDestroyable(){
     return destroyable;
-}
-
-void Item::fadeAway(qreal speed, int interval){
-    if (currentOpacity > 0 && TimerUtils::getInstance().countEachFrame(interval)){
-        shallCalculateTransformOP = true;
-        setOpacity(currentOpacity-=speed);
-
-        if (currentOpacity <= 0)
-            hide();
-
-        qDebug() <<  "Current opacity: " << currentOpacity;
-    }
-}
-
-void Item::scale(qreal speed, int interval){
-    if (currentScale > 0 && TimerUtils::getInstance().countEachFrame(interval)){
-        shallCalculateTransformOP = true;
-        setScale(currentScale+=speed);
-
-        if (currentScale <= 0)
-            hide();
-    }
 }
 
 void Item::makeMonitor(){
@@ -296,7 +247,7 @@ void Item::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWid
             painter->drawImage(pos(), *currentImage);
 
             if (lightEffect != NULL)
-                lightEffect->paintLightEffect(painter);
+                lightEffect->apply(painter);
 
         }
         else
@@ -464,6 +415,46 @@ void Item::setBoundingRectBias(int width, int height){
 }
 
 void Item::addLightEffect(int radius, int biasX, int biasY){
-    lightEffect = new ItemEffect(ItemEffectType(LIGHT), radius, 1, this);
+    lightEffect = new ItemEffect(this, ItemEffectType(LIGHT), radius);
     lightEffect->setBias(biasX, biasY);
+}
+
+int Item::getCurrentRotationAngle(){
+    return currentRotationAngle;
+}
+
+qreal Item::getCurrentOpacity(){
+    return currentOpacity;
+}
+
+qreal Item::getCurrentScale(){
+    return currentScale;
+}
+
+qreal Item::getInitialOpacity(){
+    return initialOpacity;
+}
+
+qreal Item::getInitialScale(){
+    return initialScale;
+}
+
+void Item::setCurrentRotationAngle(int currentRotationAngle){
+    this->currentRotationAngle = currentRotationAngle;
+}
+
+void Item::setCurrentOpacity(qreal currentOpacity){
+    this->currentOpacity = currentOpacity;
+}
+
+void Item::setCurrentScale(qreal currentScale){
+    this->currentScale = currentScale;
+}
+
+bool Item::getShallCalculateTransformOP(){
+    return shallCalculateTransformOP;
+}
+
+void Item::setShallCalculateTransformOP(bool shallCalculateTransformOP){
+    this->shallCalculateTransformOP = shallCalculateTransformOP;
 }

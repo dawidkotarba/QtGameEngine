@@ -2,6 +2,7 @@
 #define ITEMEFFECT_H
 #include <QGraphicsItem>
 #include <QPainter>
+#include "engine/utils/timerutils.h"
 
 enum ItemEffectType {
     FADE_AWAY,
@@ -13,23 +14,26 @@ enum ItemEffectType {
 class ItemEffect {
 
 public:
-    ItemEffect(ItemEffectType effectType, double effectFactorValue);
-    ItemEffect(ItemEffectType effectType, double effectFactorValue, double frameDelayValue);
-    ItemEffect(ItemEffectType effectType, double effectFactorValue, double frameDelayValue, QGraphicsItem* owner);
+    ItemEffect(QGraphicsItem* owner, ItemEffectType effectType, qreal effectFactorValue = 0);
     ItemEffectType getEffectType();
-    double getEffectFactorValue();
+    qreal getEffectFactorValue();
     double getFrameDelayValue();
     void setBias(int biasX, int biasY);
-    void paintLightEffect(QPainter* painter);
+    void apply(QPainter* painter = NULL);
+    void setFrameDelayValue(int frameDelayValue);
 
 private:
     ItemEffectType effectType;
-    double effectFactorValue; // angle: rotation, speed: scale, rotate, light: radius
-    double frameDelayValue;
-    bool shallAddLightEffect;
+    qreal effectFactorValue; // angle: rotation, speed: scale, rotate, light: radius
+    int frameDelayValue;
     QGraphicsItem* owner;
     int biasX;
     int biasY;
+
+    void paintLightEffect(QPainter* painter);
+    void rotate();
+    void fadeAway();
+    void scale();
 };
 
 #endif // ITEMEFFECT_H

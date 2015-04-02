@@ -33,22 +33,25 @@ public:
             if (allowNegative && Utils::getInstance().randInt(0,1))
                 angle = -angle;
 
-            ItemEffect effect(ItemEffectType(ROTATE), angle, interval);
-            item->transform(effect);
+            ItemEffect effect(item, ItemEffectType(ROTATE), angle);
+            effect.setFrameDelayValue(interval);
+            item->addEffect(effect);
         }
     }
 
     void fadeAway(QList<QPointer<Item> >& items, qreal minSpeed, qreal maxSpeed, int interval = 1){
         foreach(QPointer<Item> item, items){
-            ItemEffect effect(ItemEffectType(FADE_AWAY), Utils::getInstance().randFloat(minSpeed, maxSpeed), interval);
-            item->transform(effect);
+            ItemEffect effect(item, ItemEffectType(FADE_AWAY), Utils::getInstance().randFloat(minSpeed, maxSpeed));
+            effect.setFrameDelayValue(interval);
+            item->addEffect(effect);
         }
     }
 
     void scale(QList<QPointer<Item> >& items, qreal minSpeed, qreal maxSpeed, int interval = 1){
         foreach(QPointer<Item> item, items){
-            ItemEffect effect(ItemEffectType(SCALE), Utils::getInstance().randFloat(minSpeed, maxSpeed), interval);
-            item->transform(effect);
+            ItemEffect effect(item, ItemEffectType(SCALE), Utils::getInstance().randFloat(minSpeed, maxSpeed));
+            effect.setFrameDelayValue(interval);
+            item->addEffect(effect);
         }
     }
 

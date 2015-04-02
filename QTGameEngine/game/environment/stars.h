@@ -9,10 +9,9 @@ class Star16 : public Item {
 public:
     Star16():
         Item(Asset(PATH_STAR16)){
-        ItemEffect effect(ItemEffectType(ROTATE), Utils::getInstance().randInt(-5, 5), 1);
-        transform(effect);
+        ItemEffect effect(this, ItemEffectType(ROTATE), Utils::getInstance().randInt(-5, 5));
+        addEffect(effect);
     }
-
 };
 
 class Star32 : public Item {
@@ -20,10 +19,9 @@ class Star32 : public Item {
 public:
     Star32():
         Item(Asset(PATH_STAR32)){
-        ItemEffect effect(ItemEffectType(ROTATE), Utils::getInstance().randInt(-5, 5), 1);
-        transform(effect);
+        ItemEffect effect(this, ItemEffectType(ROTATE), Utils::getInstance().randInt(-5, 5));
+        addEffect(effect);
     }
-
 };
 
 #endif // STARS_H

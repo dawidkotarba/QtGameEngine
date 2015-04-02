@@ -50,9 +50,9 @@ bool Fighter::isMoving(){
 void Fighter::action(){
 
     if (isDead() && isVisible()){
-        fadeAway(0.02);
-        rotate(10);
-        scale(-0.01);
+        //fadeAway(0.02);
+        //rotate(10);
+        //scale(-0.01);
         stopFiring();
     }
     else if (currentOpacity <= 0){

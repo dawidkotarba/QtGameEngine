@@ -8,8 +8,8 @@ Asteroid::Asteroid():
     QPoint speed(ENEMY_ASTEROID_SPEED, 0);
     setSpeed(speed);
 
-    ItemEffect effect(ItemEffectType(ROTATE), ENEMY_ASTEROID_ROTATION, 1);
-    transform(effect);
+    ItemEffect effect(this, ItemEffectType(ROTATE), ENEMY_ASTEROID_ROTATION);
+    addEffect(effect);
 }
 
 Asteroid::Asteroid(const QString& imgPath, QPointF position):
@@ -21,8 +21,8 @@ Asteroid::Asteroid(const QString& imgPath, QPointF position):
     QPoint speed(ENEMY_ASTEROID_SPEED, 0);
     setSpeed(speed);
 
-    ItemEffect effect(ItemEffectType(ROTATE), ENEMY_ASTEROID_CHILDREN_ROTATION, 1);
-    transform(effect);
+    ItemEffect effect(this, ItemEffectType(ROTATE), ENEMY_ASTEROID_CHILDREN_ROTATION);
+    addEffect(effect);
 }
 
 Asteroid::~Asteroid(){

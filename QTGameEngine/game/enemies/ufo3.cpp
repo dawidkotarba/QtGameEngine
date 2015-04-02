@@ -9,8 +9,8 @@ Ufo3::Ufo3():
     pos().setY(SceneUtils::getInstance().getTranslatedWidth(y));
     setSpeed(speed);
 
-    ItemEffect effect(ItemEffectType(ROTATE), 10, 1);
-    transform(effect);
+    ItemEffect effect(this, ItemEffectType(ROTATE), 10);
+    addEffect(effect);
 }
 
 Ufo3::~Ufo3(){
