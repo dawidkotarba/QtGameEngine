@@ -50,6 +50,7 @@ public:
     void setHealth(int value);
     bool isDead();
     void addEffect(ItemEffect& effect);
+    void removeEffect(ItemEffectType effectType);
     void resetTransformation();
     void resetRotation();
     void resetOpacity();

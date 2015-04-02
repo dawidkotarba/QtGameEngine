@@ -149,6 +149,17 @@ void Item::addEffect(ItemEffect& effect){
     transformationEffects.append(effect);
 }
 
+void Item::removeEffect(ItemEffectType effectType){
+
+    for (int i=0; i<transformationEffects.size(); i++){
+
+        ItemEffect effect = transformationEffects.at(i);
+
+        if (effect.getEffectType() == effectType)
+            transformationEffects.removeAt(i);
+    }
+}
+
 void Item::resetTransformation(){
     resetTransform();
     resetRotation();

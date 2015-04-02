@@ -49,18 +49,8 @@ bool Fighter::isMoving(){
 
 void Fighter::action(){
 
-    if (isDead() && isVisible()){
-        //fadeAway(0.02);
-        //rotate(10);
-        //scale(-0.01);
-        stopFiring();
-    }
-    else if (currentOpacity <= 0){
-        setPos(FIGHTER_INIT_POSITION);
-        resetTransformation();
-        health = 100;
-        particles->start();
-    }
+    if (currentOpacity <= 0)
+        ressurect();
 
     QList<QPointer<Item> > collisions = getCollidingItems();
 
@@ -73,7 +63,6 @@ void Fighter::action(){
                 playSound("bomb2");
                 return;
             }
-
     fire();
 }
 
@@ -194,6 +183,23 @@ void Fighter::stopFiring(){
 
 void Fighter::die(){
     stop();
+    stopFiring();
+
+    ItemEffect fadeAway(this, ItemEffectType(FADE_AWAY), 0.02);
+    addEffect(fadeAway);
+
+    ItemEffect rotation(this, ItemEffectType(ROTATE), 10);
+    addEffect(rotation);
+
+    ItemEffect scale(this, ItemEffectType(SCALE), -0.01);
+    addEffect(scale);
+}
+
+void Fighter::ressurect(){
+    setPos(FIGHTER_INIT_POSITION);
+    resetTransformation();
+    health = 100;
+    particles->start();
 }
 
 void Fighter::stop(){

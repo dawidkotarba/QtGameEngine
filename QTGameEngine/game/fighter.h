@@ -29,6 +29,7 @@ private:
     void action();
     void initParticles();
     void die();
+    void ressurect();
     void stop();
     virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
 
