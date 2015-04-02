@@ -2,6 +2,7 @@
 
 Ship::Ship():
     Item(Asset(PATH_ENEMY_SHIP, 28)),
+    itemEffect(NULL),
     hasFired(false){
     setDestroyable(true);
     setEnemy(true);
@@ -22,7 +23,11 @@ void Ship::move(){
     if (x < SceneUtils::getInstance().getTranslatedWidth(50)){
         y+=posYBias;
         x-=2;
-        //rotate(5);
+
+        if (itemEffect == NULL){
+            itemEffect = new ItemEffect(this, ItemEffectType(ROTATE), 5);
+            addEffect(*itemEffect);
+        }
     }
 
     setPos(x,y);

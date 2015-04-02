@@ -16,6 +16,7 @@ public:
 private:
     QPointer<ParticleExplosion> explosion;
     QPointer<ParticlesProcessor> particles;
+    ItemEffect* itemEffect;
     qreal posYBias;
     bool hasFired;
 
