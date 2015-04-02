@@ -18,8 +18,7 @@
 #include "engine/processors/animationprocessor.h"
 #include "engine/utils/soundutils.h"
 
-class Item : public QGraphicsItem, public QObject
-{
+class Item : public QGraphicsItem, public QObject {
 public:
     Item();
     Item(const QString& sourceFolder, const QString& imgPattern, int imgCount);
@@ -99,6 +98,7 @@ protected:
     virtual void action(){}
     virtual void die();
     QPointer<AnimationProcessor> animationProcessor;
+    QPainter* painterPtr;
     QPoint percentPosition;
     QPoint speed;
     int acceleration;
@@ -122,8 +122,9 @@ protected:
     int boundingRectWidthBias;
     int boundingRectHeightBias;
 
-    // transformations
+    // effects
     QList<ItemEffect> transformationEffects;
+    ItemEffect* lightEffect;
     void processTransformation();
     QPoint calculateTransformOriginPoint();
     bool shallCalculateTransformOP;
@@ -132,14 +133,6 @@ protected:
     qreal currentScale;
     qreal initialOpacity;
     qreal initialScale;
-
-    // light effects
-    void paintLightEffect();
-    QPainter* painterPtr;
-    bool shallAddLightEffect;
-    int lightRadius;
-    int lightBiasX;
-    int lightBiasY;
 
 private:
     QRectF boundingRect() const;

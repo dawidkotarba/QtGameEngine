@@ -1,44 +1,35 @@
 #ifndef ITEMEFFECT_H
 #define ITEMEFFECT_H
-#include "qglobal.h"
+#include <QGraphicsItem>
+#include <QPainter>
 
-enum ItemEffectType{
+enum ItemEffectType {
     FADE_AWAY,
     SCALE,
-    ROTATE
+    ROTATE,
+    LIGHT
 };
 
-class ItemEffect
-{
+class ItemEffect {
+
 public:
-
-    ItemEffect(ItemEffectType effectType, qreal effectFactorValue){
-        this->effectType = effectType;
-        this->effectFactorValue = effectFactorValue;
-        frameDelayValue = 1;
-    }
-
-    ItemEffect(ItemEffectType effectType, qreal effectFactorValue, qreal frameDelayValue):
-    ItemEffect(effectType, effectFactorValue){
-        this->frameDelayValue = frameDelayValue;
-    }
-
-    ItemEffectType getEffectType(){
-        return effectType;
-    }
-
-    qreal getEffectFactorValue(){
-        return effectFactorValue;
-    }
-
-    qreal getFrameDelayValue(){
-        return frameDelayValue;
-    }
+    ItemEffect(ItemEffectType effectType, double effectFactorValue);
+    ItemEffect(ItemEffectType effectType, double effectFactorValue, double frameDelayValue);
+    ItemEffect(ItemEffectType effectType, double effectFactorValue, double frameDelayValue, QGraphicsItem* owner);
+    ItemEffectType getEffectType();
+    double getEffectFactorValue();
+    double getFrameDelayValue();
+    void setBias(int biasX, int biasY);
+    void paintLightEffect(QPainter* painter);
 
 private:
     ItemEffectType effectType;
-    qreal effectFactorValue; // angle: rotation, speed: scale, rotate
-    qreal frameDelayValue;
+    double effectFactorValue; // angle: rotation, speed: scale, rotate, light: radius
+    double frameDelayValue;
+    bool shallAddLightEffect;
+    QGraphicsItem* owner;
+    int biasX;
+    int biasY;
 };
 
 #endif // ITEMEFFECT_H

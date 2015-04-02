@@ -55,6 +55,7 @@ SOURCES += \
     engine\utils\utils.cpp \
     engine\controls\inputcontroller.cpp \
     engine\items\item.cpp \
+    engine\items\itemeffect.cpp \
     engine\utils\timerutils.cpp \
     engine\utils\sceneutils.cpp \
     engine\processors\animationprocessor.cpp \

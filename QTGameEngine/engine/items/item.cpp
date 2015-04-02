@@ -31,11 +31,7 @@ Item::Item():
     enemy(false),
     markedAsForDelete(false),
     started(false),
-    painterPtr(NULL),
-    shallAddLightEffect(false),
-    lightRadius(0),
-    lightBiasX(0),
-    lightBiasY(0){
+    lightEffect(NULL){
     setPos(ITEM_ZERO_POS);
     resetTransformation();
     MemoryManager::getInstance().addToItemsList(this);
@@ -298,7 +294,9 @@ void Item::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWid
                 forcePaint = true;
 
             painter->drawImage(pos(), *currentImage);
-            paintLightEffect();
+
+            if (lightEffect != NULL)
+                lightEffect->paintLightEffect(painter);
 
         }
         else
@@ -319,29 +317,6 @@ QList<QPointer<Item> > Item::getCollidingItems(){
             }
         }
     return items;
-}
-
-void Item::paintLightEffect(){
-    if (!shallAddLightEffect || painterPtr == NULL)
-        return;
-
-    QPoint updatedPos(pos().x()+lightBiasX, pos().y()+lightBiasY);
-
-    painterPtr->setCompositionMode(QPainter::CompositionMode_Plus);
-    painterPtr->setPen(Qt::NoPen);
-
-    QRadialGradient light(updatedPos, lightRadius ,updatedPos);
-    light.setColorAt(0.0f, QColor(255,200,75,25+qrand()%75));
-    light.setColorAt(1.0f, QColor(255,255,255,0));
-    painterPtr->setBrush(light);
-    painterPtr->drawEllipse(updatedPos,lightRadius,lightRadius);
-}
-
-void Item::addLightEffect(int radius, int biasX, int biasY){
-    shallAddLightEffect = true;
-    lightRadius = radius;
-    lightBiasX = biasX;
-    lightBiasY = biasY;
 }
 
 void Item::setPercentPosition(QPoint& position){
@@ -486,4 +461,9 @@ void Item::setBoundingRectDividers(qreal width, qreal height){
 void Item::setBoundingRectBias(int width, int height){
     boundingRectWidthBias = width;
     boundingRectHeightBias = height;
+}
+
+void Item::addLightEffect(int radius, int biasX, int biasY){
+    lightEffect = new ItemEffect(ItemEffectType(LIGHT), radius, 1, this);
+    lightEffect->setBias(biasX, biasY);
 }
