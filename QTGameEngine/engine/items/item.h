@@ -79,6 +79,12 @@ public:
     void setBoundingRectBias(int width, int height);
     void addLightEffect(int radius, int biasX = 0, int biasY = 0);
     void resetTransforationState();
+    void setDefaultOpacity(qreal defaultScale);
+    void setDefaultScale(qreal defaultOpacity);
+    qreal getDefaultScale();
+    qreal getDefaultOpacity();
+    void setDefaultRotation(qreal defaultRotation);
+    qreal getDefaultRotation();
 
 protected:
     void advance(int step);
@@ -112,10 +118,13 @@ protected:
     int boundingRectWidthBias;
     int boundingRectHeightBias;
 
-    // effects
+    // effects and transformations
     QList<ItemEffect> transformationEffects;
     ItemEffect* lightEffect;
     QPoint calculateTransformOriginPoint();
+    qreal defaultScale;
+    qreal defaultOpacity;
+    qreal defaultRotation;
 
 private:
     QRectF boundingRect() const;

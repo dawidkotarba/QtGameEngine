@@ -22,10 +22,11 @@ Fighter::~Fighter(){
 void Fighter::initParticles(){
     particles = new ParticlesProcessor(Asset(PATH_STEAM_S), 30, this);
     particles->getItemsModifier()->setBias(FIGHTER_PARTICLES_BIAS_X, FIGHTER_PARTICLES_BIAS_Y);
-    particles->getItemsModifier()->setScale(0.1);
+    particles->getItemsModifier()->setDefaultScale(0.1);
     particles->getItemsModifier()->applyRotateEffect(2, 20, true);
     particles->getItemsModifier()->applyFadeEffect(0.04, 0.05);
     particles->getItemsModifier()->applyScaleEffect(0.04, 0.09);
+    particles->setLooping(true);
     particles->setRadius(3);
     particles->setSpawnDelay(2);
     particles->start();
@@ -196,6 +197,7 @@ void Fighter::die(){
 }
 
 void Fighter::ressurect(){
+    transformationEffects.clear();
     setPos(FIGHTER_INIT_POSITION);
     resetTransforationState();
     health = 100;

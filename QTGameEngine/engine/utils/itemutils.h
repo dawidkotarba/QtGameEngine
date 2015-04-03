@@ -55,14 +55,19 @@ public:
         }
     }
 
-    void setScale(QList<QPointer<Item> >& items, qreal scale){
+    void setDefaultScale(QList<QPointer<Item> >& items, qreal scale){
         foreach(QPointer<Item> item, items)
-            item->setScale(scale);
+            item->setDefaultScale(scale);
     }
 
-    void setOpacity(QList<QPointer<Item> >& items, qreal opacity){
+    void setDefaultOpacity(QList<QPointer<Item> >& items, qreal opacity){
         foreach(QPointer<Item> item, items)
-            item->setOpacity(opacity);
+            item->setDefaultOpacity(opacity);
+    }
+
+    void setDefaultRotation(QList<QPointer<Item> >& items, qreal rotation){
+        foreach(QPointer<Item> item, items)
+            item->setDefaultRotation(rotation);
     }
 
     void stop(QList<QPointer<Item> >& items){

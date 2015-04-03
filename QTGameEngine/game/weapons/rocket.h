@@ -11,7 +11,7 @@ public:
         Weapon(owner, Asset(PATH_ROCKET), Asset(PATH_ROCKET_SMOKE_S), 10, QPoint(WEAPON_ROCKET_SPEED,0)){
         setBias(WEAPON_ROCKET_BIAS_X, WEAPON_ROCKET_BIAS_Y);
         particles->getItemsModifier()->setBias(WEAPON_ROCKET_PARTICLE_BIAS_X, WEAPON_ROCKET_PARTICLE_BIAS_Y);
-        particles->getItemsModifier()->setScale(0.1);
+        particles->getItemsModifier()->setDefaultScale(0.1);
         particles->getItemsModifier()->applyFadeEffect(0.1, 0.1);
         particles->getItemsModifier()->applyScaleEffect(0.2, 0.2);
         particles->setSpawnDelay(2);
@@ -25,7 +25,7 @@ public:
 
         fireball = new ParticlesProcessor(Asset(PATH_FIREBALL), 5, this);
         fireball->getItemsModifier()->applyRotateEffect(5,5,true);
-        fireball->getItemsModifier()->setScale(0.1);
+        fireball->getItemsModifier()->setDefaultScale(0.1);
         fireball->getItemsModifier()->applyScaleEffect(0.06, 0.1);
         fireball->getItemsModifier()->applyFadeEffect(0.02, 0.02);
         fireball->getItemsModifier()->setBias(-50,-50);

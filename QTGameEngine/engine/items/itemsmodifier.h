@@ -32,12 +32,16 @@ public:
         ItemUtils::getInstance().applyScaleEffect(items, minSpeed, maxSpeed, interval);
     }
 
-    void setScale(qreal scale){
-       ItemUtils::getInstance().setScale(items, scale);
+    void setDefaultScale(qreal scale){
+       ItemUtils::getInstance().setDefaultScale(items, scale);
     }
 
-    void setOpacity(qreal opacity){
-       ItemUtils::getInstance().setOpacity(items, opacity);
+    void setDefaultOpacity(qreal opacity){
+       ItemUtils::getInstance().setDefaultOpacity(items, opacity);
+    }
+
+    void setDefaultRotation(qreal defaultRotation){
+        ItemUtils::getInstance().setDefaultRotation(items, defaultRotation);
     }
 
     void stop(){

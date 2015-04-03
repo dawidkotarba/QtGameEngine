@@ -50,7 +50,7 @@ void Weapon::die(){
 
     explParticles = new ParticlesProcessor(Asset(PATH_YELLOW_C), 3, this);
     explParticles->getItemsModifier()->applyRotateEffect(20,30,true);
-    explParticles->getItemsModifier()->setScale(0.1);
+    explParticles->getItemsModifier()->setDefaultScale(0.1);
     explParticles->getItemsModifier()->applyScaleEffect(0.01, 0.05);
     explParticles->getItemsModifier()->applyFadeEffect(0.03, 0.05);
     explParticles->setLooping(false);

@@ -20,6 +20,9 @@ Item::Item():
     biasY(0),
     repeatable(false),
     forcePaint(false),
+    defaultScale(1),
+    defaultOpacity(1),
+    defaultRotation(0),
     boundingRectHeightDivider(1),
     boundingRectWidthDivider(1),
     boundingRectWidthBias(0),
@@ -376,10 +379,35 @@ void Item::addLightEffect(int radius, int biasX, int biasY){
 }
 
 void Item::resetTransforationState(){
-    transformationEffects.clear();
     resetTransform();
-    setOpacity(1);
-    setScale(1);
-    setRotation(0);
-    show();
+    setOpacity(defaultOpacity);
+    setScale(defaultScale);
+    setRotation(defaultRotation);
+}
+
+void Item::setDefaultScale(qreal defaultScale){
+    this->defaultScale = defaultScale;
+    setScale(defaultScale);
+}
+
+void Item::setDefaultOpacity(qreal defaultOpacity){
+    this->defaultOpacity = defaultOpacity;
+    setOpacity(defaultOpacity);
+}
+
+void Item::setDefaultRotation(qreal defaultRotation){
+    this->defaultRotation = defaultRotation;
+    setRotation(defaultRotation);
+}
+
+qreal Item::getDefaultScale(){
+    return defaultScale;
+}
+
+qreal Item::getDefaultOpacity(){
+    return defaultOpacity;
+}
+
+qreal Item::getDefaultRotation(){
+    return defaultRotation;
 }
