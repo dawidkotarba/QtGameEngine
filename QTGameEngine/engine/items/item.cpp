@@ -25,8 +25,7 @@ Item::Item():
     defaultRotation(0),
     enemy(false),
     markedAsForDelete(false),
-    started(false),
-    lightEffect(NULL){
+    started(false){
     setPos(ITEM_ZERO_POS);
     MemoryManager::getInstance().addToItemsList(this);
     SceneUtils::getInstance().addToScene(this);
@@ -132,7 +131,13 @@ void Item::repeat(){
 }
 
 void Item::addEffect(ItemEffect& effect){
-    transformationEffects.append(effect);
+
+    if (effect.getEffectType() == ItemEffectType(LIGHT)){
+        lightEffect.clear();
+        lightEffect.append(effect);
+    }
+    else
+        transformationEffects.append(effect);
 }
 
 void Item::removeEffect(ItemEffectType effectType){
@@ -199,9 +204,10 @@ void Item::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWid
 
             painter->drawImage(pos(), *currentImage);
 
-            if (lightEffect != NULL)
-                lightEffect->apply(painter);
-
+            if (!lightEffect.isEmpty()){
+                ItemEffect lightEff = lightEffect.at(0);
+                lightEff.apply(painter);
+            }
         }
         else
             qWarning() << "Cannot paint img of item " << itemId;
@@ -355,11 +361,6 @@ void Item::setEnemy(bool value){
 
 bool Item::isEnemy(){
     return enemy;
-}
-
-void Item::addLightEffect(int radius, int biasX, int biasY){
-    lightEffect = new ItemEffect(this, ItemEffectType(LIGHT), radius);
-    lightEffect->setBias(biasX, biasY);
 }
 
 void Item::resetTransforationState(){

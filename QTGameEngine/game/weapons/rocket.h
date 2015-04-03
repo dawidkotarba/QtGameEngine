@@ -17,7 +17,10 @@ public:
 
         damage = WEAPON_ROCKET_DAMAGE;
         playSound("swoosh");
-        addLightEffect(100, 50, 10);
+
+       ItemEffect lightEffect(this, ItemEffectType(LIGHT), 100);
+       lightEffect.setBias(50, 10);
+       addEffect(lightEffect);
     }
 
     void die(){

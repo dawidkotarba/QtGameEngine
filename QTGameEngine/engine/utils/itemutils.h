@@ -126,8 +126,12 @@ public:
     }
 
     void addLightEffect(QList<QPointer<Item> >& items, int radius, int biasX = 0, int biasY = 0){
-        foreach(QPointer<Item> item, items)
-            item->addLightEffect(radius, biasX, biasY);
+        foreach(QPointer<Item> item, items){
+
+            ItemEffect lightEffect(item, ItemEffectType(LIGHT), radius);
+            lightEffect.setBias(biasX, biasY);
+            item->addEffect(lightEffect);
+        }
     }
 
 private:

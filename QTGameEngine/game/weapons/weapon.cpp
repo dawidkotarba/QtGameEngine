@@ -8,7 +8,10 @@ Weapon::Weapon(QPointer<Item> owner, Asset itemAsset, QPoint speed):
     setSpeed(speed);
     setPos(owner->pos());
     animationProcessor->setLooping(true);
-    addLightEffect(50);
+
+    ItemEffect lightEffect(this, ItemEffectType(LIGHT), 50);
+    addEffect(lightEffect);
+
 }
 
 

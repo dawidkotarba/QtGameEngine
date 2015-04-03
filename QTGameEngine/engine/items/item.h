@@ -75,7 +75,6 @@ public:
     bool isOutOfScene();
     void setEnemy(bool value);
     bool isEnemy();
-    void addLightEffect(int radius, int biasX = 0, int biasY = 0);
     void resetTransforationState();
     void setDefaultOpacity(qreal defaultScale);
     void setDefaultScale(qreal defaultOpacity);
@@ -113,7 +112,7 @@ protected:
 
     // effects and transformations
     QList<ItemEffect> transformationEffects;
-    ItemEffect* lightEffect;
+    QList<ItemEffect> lightEffect;
     QPoint calculateTransformOriginPoint();
     qreal defaultScale;
     qreal defaultOpacity;
