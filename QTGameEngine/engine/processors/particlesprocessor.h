@@ -21,7 +21,6 @@ public:
     void setPos(QPointF& position);
     void setPos(qreal x, qreal y);
     void setSpawnDelay(int frames);
-    void attachToItem(QPointer<Item> item);
     void start();
     void stop();
     void setLooping(bool value);
@@ -44,7 +43,7 @@ private:
     bool shallLoop;
     bool loopFinished;
     QList<QPointer<Item> > finishedParticles;
-    QPointer<Item> attachedItem;
+    QPointer<Item> owner;
 };
 
 #endif // PARTICLES_H

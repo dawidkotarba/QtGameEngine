@@ -4,7 +4,7 @@ ParticlesProcessor::ParticlesProcessor(Asset asset, int count):
     particlesCount(count),
     position(ITEM_ZERO_POS),
     radius(0),
-    attachedItem(NULL),
+    owner(NULL),
     lastUpdatedParticle(CODE_NOT_INITIALIZED),
     spawnDelay(1),
     shallLoop(true){
@@ -19,12 +19,8 @@ ParticlesProcessor::ParticlesProcessor(Asset asset, int count):
 }
 
 ParticlesProcessor::ParticlesProcessor(Asset asset, int count, QPointer<Item> owner):
-    ParticlesProcessor(asset, count)
-{
-    attachedItem = owner;
-    position = owner->pos();
-
-    ItemUtils::getInstance().setPos(particles, position);
+    ParticlesProcessor(asset, count){
+    this->owner = owner;
 }
 
 ParticlesProcessor::~ParticlesProcessor(){
@@ -33,74 +29,65 @@ ParticlesProcessor::~ParticlesProcessor(){
 }
 
 void ParticlesProcessor::start(){
-    Item::start();
     ItemUtils::getInstance().setVisible(particles, false);
-    ItemUtils::getInstance().setStarted(particles, true);
 }
 
 void ParticlesProcessor::stop(){
-    Item::stop();
     ItemUtils::getInstance().stop(particles);
 }
 
 void ParticlesProcessor::advance(int step){
 
-    if (started){
+    if (!TimerUtils::getInstance().countEachFrame(spawnDelay))
+        return;
 
-        if (!TimerUtils::getInstance().countEachFrame(spawnDelay))
-            return;
+    if (!shallLoop){
+        for (int partNo = 0; partNo<finishedParticles.size(); partNo++){
 
-        if (!shallLoop){
-            for (int partNo = 0; partNo<finishedParticles.size(); partNo++){
+            QPointer<Item> finPart = finishedParticles.at(partNo);
 
-                QPointer<Item> finPart = finishedParticles.at(partNo);
-
-                if (finPart && !finPart->isVisible()){
-                    finPart->stop();
-                    finishedParticles.removeOne(finPart);
-                    particles.removeOne(finPart);
-                }
+            if (finPart && !finPart->isVisible()){
+                finPart->stop();
+                finishedParticles.removeOne(finPart);
+                particles.removeOne(finPart);
             }
         }
+    }
 
-        if (++lastUpdatedParticle >= particles.size())
-            lastUpdatedParticle = 0;
+    if (++lastUpdatedParticle >= particles.size())
+        lastUpdatedParticle = 0;
 
-        QPointer<Item> particle;
+    QPointer<Item> particle;
 
-        if (!particles.isEmpty())
-            particle = particles.at(lastUpdatedParticle);
+    if (!particles.isEmpty())
+        particle = particles.at(lastUpdatedParticle);
 
-        if (particle && !particle->isVisible()){
-            particle->resetTransforationState();
-            //particle->setScale(00000.1);
+    if (particle && !particle->isVisible()){
+        particle->resetTransforationState();
+        position = calculateRelativePos(particle);
+        particle->setPos(position);
 
-            position = calculateRelativePos(particle);
-            particle->setPos(position);
-
-            int xBias = Utils::getInstance().randInt(-radius,radius);
-            int yBias = Utils::getInstance().randInt(-radius,radius);
-            particle->moveBy(xBias, yBias);
-            particle->show();
-
-            if (!shallLoop)
-                finishedParticles.append(particle);
+        if (radius > 0){
+            int radiusBias = Utils::getInstance().randInt(-radius,radius);
+            particle->moveBy(radiusBias, radiusBias);
         }
+
+        particle->setStarted(true);
+        particle->show();
+
+        if (!shallLoop)
+            finishedParticles.append(particle);
     }
 }
 
 QPointF ParticlesProcessor::calculateRelativePos(QPointer<Item> particle){
-    if (attachedItem){
-        qreal posX = attachedItem->x() + particle->getBiasX();
-        qreal posY = attachedItem->y() + particle->getBiasY();
+    if (owner){
+        qreal posX = owner->x() + particle->getBiasX();
+        qreal posY = owner->y() + particle->getBiasY();
         position = QPointF(posX, posY);
     }
 
     return position;
-}
-
-void ParticlesProcessor::attachToItem(QPointer<Item> item){
-    attachedItem = item;
 }
 
 void ParticlesProcessor::setRadius(int radius){

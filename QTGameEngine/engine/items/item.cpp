@@ -50,7 +50,6 @@ Item::~Item(){
 
 void Item::start(){
     started = true;
-    show();
 }
 
 void Item::stop(){
