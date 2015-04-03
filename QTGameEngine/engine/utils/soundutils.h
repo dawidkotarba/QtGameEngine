@@ -14,8 +14,7 @@ class SoundUtils {
 
 public:
 
-    static SoundUtils& getInstance()
-    {
+    static SoundUtils& getInstance() {
         static SoundUtils instance;
         return instance;
     }

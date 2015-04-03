@@ -4,8 +4,7 @@
 #include "game/resources.h"
 #include "game/particles/particleexplosion.h"
 
-class Rocket: public Weapon
-{
+class Rocket: public Weapon {
 public:
     Rocket(QPointer<Item> owner):
         Weapon(owner, Asset(PATH_ROCKET), Asset(PATH_ROCKET_SMOKE_S), 10, QPoint(WEAPON_ROCKET_SPEED,0)){

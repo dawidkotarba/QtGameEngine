@@ -11,8 +11,7 @@
 #include "engine/utils/cachemanager.h"
 #include "engine/items/cacheobject.h"
 
-class AnimationProcessor: public QObject
-{
+class AnimationProcessor: public QObject {
 public:
     AnimationProcessor(const QString& sourceFolder, const QString& imgPattern, int imgCount);
     QPointer<Image> provideCurrentImage();

@@ -5,8 +5,7 @@
 #include "game/resources.h"
 #include "game/particles/particleexplosion.h"
 
-class Ufo: public Item
-{
+class Ufo: public Item {
 public:
     Ufo();
     virtual ~Ufo();

@@ -3,8 +3,7 @@
 #include "item.h"
 #include "engine/utils/timerutils.h"
 
-class MonitorItem : public Item
-{
+class MonitorItem : public Item {
 public:    
     MonitorItem():
         Item(){

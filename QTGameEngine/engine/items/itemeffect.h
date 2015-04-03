@@ -6,15 +6,7 @@
 #include <QGraphicsDropShadowEffect>
 #include <QPainter>
 #include "engine/utils/timerutils.h"
-
-enum ItemEffectType {
-    FADE,
-    SCALE,
-    ROTATE,
-    LIGHT,
-    BLUR,
-    SHADOW
-};
+#include "engine/enums/enums.h"
 
 class ItemEffect {
 

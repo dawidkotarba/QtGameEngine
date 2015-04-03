@@ -3,7 +3,7 @@
 #include "engine/items/item.h"
 #include "game/resources.h"
 
-class Cloud : public Item{
+class Cloud : public Item {
 
 public:
     Cloud():
@@ -11,7 +11,7 @@ public:
 
 };
 
-class Cloud2 : public Item{
+class Cloud2 : public Item {
 
 public:
     Cloud2():
@@ -19,7 +19,7 @@ public:
 
 };
 
-class Cloud3 : public Item{
+class Cloud3 : public Item {
 
 public:
     Cloud3():
@@ -27,7 +27,7 @@ public:
 
 };
 
-class Cloud4 : public Item{
+class Cloud4 : public Item {
 
 public:
     Cloud4():
@@ -35,7 +35,7 @@ public:
 
 };
 
-class Cloud5 : public Item{
+class Cloud5 : public Item {
 
 public:
     Cloud5():
@@ -43,7 +43,7 @@ public:
 
 };
 
-class Cloud6 : public Item{
+class Cloud6 : public Item {
 
 public:
     Cloud6():

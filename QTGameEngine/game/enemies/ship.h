@@ -6,8 +6,7 @@
 #include "game/particles/particleexplosion.h"
 #include "game/weapons/enemyrocket.h"
 
-class Ship: public Item
-{
+class Ship: public Item {
 public:
     Ship();
     virtual ~Ship();

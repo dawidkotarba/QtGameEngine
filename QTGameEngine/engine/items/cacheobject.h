@@ -6,8 +6,7 @@
 #include "engine/utils/memorytemplates.h"
 
 template <class T>
-class CacheObject: public QObject
-{
+class CacheObject: public QObject {
 public:
     CacheObject(QString path, QList<QPointer<T> > items){
         this->path = path;
@@ -24,14 +23,6 @@ public:
 
     QList<QPointer<T> > getItems(){
         return items;
-    }
-
-    bool operator==(const CacheObject &other){
-        return path == other.path && items.size() == other.items.size();
-    }
-
-    uint qHash(const CacheObject &key){
-        return qHash(key.path) ^ key.items.size();
     }
 
 private:

@@ -1,7 +1,7 @@
 #ifndef DIERCTIONSENUM_H
 #define DIERCTIONSENUM_H
 
-enum DirectionsEnum{
+enum DirectionsEnum {
     UP,
     DOWN,
     LEFT,

@@ -24,8 +24,7 @@
 #include "game/enemies/ship.h"
 #include "splash.h"
 
-class Window : public QGraphicsView
-{
+class Window : public QGraphicsView {
     Q_OBJECT
 public:
     virtual ~Window();

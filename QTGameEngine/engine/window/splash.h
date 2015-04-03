@@ -7,8 +7,7 @@
 #include <QTimer>
 #include "game/resources.h"
 
-class Splash: public QObject
-{
+class Splash: public QObject {
 public:
     Splash();
     void show();

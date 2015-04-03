@@ -13,8 +13,7 @@ class Utils {
 
 public:
 
-    static Utils& getInstance()
-    {
+    static Utils& getInstance() {
         static Utils instance;
         return instance;
     }

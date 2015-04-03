@@ -11,7 +11,7 @@ ParticlesProcessor::ParticlesProcessor(Asset asset, int count):
 
     for (int particlesCount = 0; particlesCount<count; particlesCount++){
         QPointer<Item> particle = new Item(asset);
-        particle->setItemId(IND_PARTICLE);
+        particle->setItemId(PARTICLE);
         particles.append(particle);
     }
 
@@ -64,6 +64,7 @@ void ParticlesProcessor::advance(int step){
 
     if (particle && !particle->isVisible()){
         particle->resetTransforationState();
+        particle->setScale(PARTICLE_MIN_SCALE);
         position = calculateRelativePos(particle);
         particle->setPos(position);
 

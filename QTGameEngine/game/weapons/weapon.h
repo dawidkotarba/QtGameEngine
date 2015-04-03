@@ -7,8 +7,7 @@
 #include "game/constants.h"
 #include "engine/utils/sceneutils.h"
 
-class Weapon: public Item
-{
+class Weapon: public Item {
 protected:
     QPointer<ParticlesProcessor> particles;
     QPointer<ParticlesProcessor> explParticles;

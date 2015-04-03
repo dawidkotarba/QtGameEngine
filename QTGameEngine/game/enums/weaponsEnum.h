@@ -1,7 +1,7 @@
 #ifndef WEAPONSENUM_H
 #define WEAPONSENUM_H
 
-enum WeaponsEnum{
+enum WeaponsEnum {
     BULLET,
     ROCKET
 };

@@ -103,7 +103,6 @@ protected:
     int blinkMinFrequency;
     int blinkMaxFrequency;
     int itemId;
-    int controlId;
     bool monitor;
     int health;
     qreal biasX;

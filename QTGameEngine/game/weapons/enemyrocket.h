@@ -5,8 +5,7 @@
 #include "game/weapons/rocket.h"
 #include "engine/items/item.h"
 
-class EnemyRocket: public Rocket
-{
+class EnemyRocket: public Rocket {
 public:
     EnemyRocket(QPointer<Item> owner):
         Rocket(owner){
@@ -24,7 +23,7 @@ public:
 
         if (!collisions.isEmpty())
             foreach (QPointer<Item> col, collisions)
-                if (col->getItemId() == FIGHTER_ID){
+                if (col->getItemId() == FIGHTER){
                     col->decreaseHealth(damage);
                     die();
                     return;

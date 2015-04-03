@@ -10,8 +10,7 @@
 #include "engine/items/item.h"
 #include "engine/utils/memorytemplates.h"
 
-class MemoryManager
-{
+class MemoryManager {
 public:
 
     static MemoryManager& getInstance()

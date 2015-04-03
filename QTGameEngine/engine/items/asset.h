@@ -2,8 +2,7 @@
 #define ASSET_H
 #include <QString>
 
-class Asset
-{
+class Asset {
 
 public:
     Asset(const QString& assetPath):

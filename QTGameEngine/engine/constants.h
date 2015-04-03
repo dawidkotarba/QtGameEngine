@@ -27,9 +27,6 @@ const int THOUSAND = 1000;
 const int CODE_NOT_INITIALIZED = -1;
 const int CODE_ERROR = -99;
 
-// INDICATORS
-const int IND_PARTICLE = -100;
-
 // PATHS
 const QString PATH_RESOURCES = STRING_COLON + STRING_SLASH + "resources" + STRING_SLASH;
 const QString PATH_ANIMATIONS = PATH_RESOURCES + "animations" + STRING_SLASH;
@@ -41,6 +38,7 @@ const int ITEM_MAX_HEALTH = 100;
 const int ITEM_HEALTH_NOT_INIT = -99;
 const QPoint ITEM_ZERO_POS(0,0);
 const QRectF ITEM_ZERO_SQUARE(0,0,0,0);
+const qreal PARTICLE_MIN_SCALE = 1e-320;
 
 // MOVING CONST
 const QPointF MOVE_LEFT_02(-0.2, 0);

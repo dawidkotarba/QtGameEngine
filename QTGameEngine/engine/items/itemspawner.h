@@ -5,8 +5,7 @@
 #include "engine/items/itemsmodifier.h"
 
 template <class T>
-class ItemSpawner: public QObject
-{
+class ItemSpawner: public QObject {
 public:
     ItemSpawner(int count, int spreadX, int spreadY, QPoint initialPos = QPoint(0,0)):
         initialPos(QPoint(0,0)),

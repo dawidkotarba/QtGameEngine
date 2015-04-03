@@ -6,8 +6,6 @@
 const QPoint FIGHTER_INIT_POSITION(0,0);
 const QPoint FIGHTER_SPEED(0,0);
 const int FIGHTER_ACCELERATION = 7;
-const int FIGHTER_ID = 1;
-const int FIGHTER_CONTROL_ID = 1;
 const int FIGHTER_HEALTH = 100;
 const int FIGHTER_PARTICLES_BIAS_X = -15;
 const int FIGHTER_PARTICLES_BIAS_Y = 3;

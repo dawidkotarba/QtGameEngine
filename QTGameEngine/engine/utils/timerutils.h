@@ -3,12 +3,10 @@
 #include <iostream>
 #include "../constants.h"
 
-class TimerUtils
-{
+class TimerUtils {
 public:
 
-    static TimerUtils& getInstance()
-    {
+    static TimerUtils& getInstance() {
         static TimerUtils instance;
         return instance;
     }

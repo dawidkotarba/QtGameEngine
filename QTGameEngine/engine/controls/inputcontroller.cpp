@@ -21,20 +21,7 @@ void InputController::controlKeyRelease(QKeyEvent* event){
 
     if (controlableItem != NULL)
         controlableItem->controlKeyRelease(event);
-    /*
-    switch(event->key()){
-    case Qt::Key_Up:
-        break;
-    case Qt::Key_Left:
-        break;
-    case Qt::Key_Right:
-        break;
-    case Qt::Key_Down:
-        break;
-    case Qt::Key_Space:
-        break;
-    }
-*/
+
     event->accept();
 }
 

@@ -5,8 +5,7 @@
 #include "game/resources.h"
 #include "game/particles/particleexplosiondust.h"
 
-class Asteroid: public Item
-{
+class Asteroid: public Item {
 public:
     Asteroid();
     Asteroid(const QString& imgPath, QPointF position);

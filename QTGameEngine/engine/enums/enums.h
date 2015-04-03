@@ -2,8 +2,19 @@
 #define ENUMS_H
 
 enum ItemIds {
-    MONITORING_ITEM = 1,
-    TEST_ITEM = 5,
+    MONITORING_ITEM,
+    PARTICLE,
+    TEST_ITEM,
+    FIGHTER
+};
+
+enum ItemEffectType {
+    FADE,
+    SCALE,
+    ROTATE,
+    LIGHT,
+    BLUR,
+    SHADOW
 };
 
 #endif // ENUMS_H

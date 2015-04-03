@@ -5,11 +5,9 @@
 #include <QPoint>
 #include "utils.h"
 
-class SceneUtils
-{
+class SceneUtils {
 public:
-    static SceneUtils& getInstance()
-    {
+    static SceneUtils& getInstance() {
         static SceneUtils instance;
         return instance;
     }

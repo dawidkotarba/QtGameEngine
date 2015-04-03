@@ -3,8 +3,7 @@
 Utils::Utils():
     application(NULL){}
 
-Utils::~Utils(){
-}
+Utils::~Utils(){}
 
 int Utils::randInt(int min, int max){
     return qrand() % ((max + 1) - min) + min;

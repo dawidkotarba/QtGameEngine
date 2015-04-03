@@ -6,7 +6,7 @@
 #include "engine/enums/enums.h"
 #include "engine/items/item.h"
 
-class ItemUtils{
+class ItemUtils {
 
 public:
 

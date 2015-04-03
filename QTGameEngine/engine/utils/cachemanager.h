@@ -11,8 +11,7 @@
 #include "engine/items/image.h"
 #include "engine/utils/memorytemplates.h"
 
-class CacheManager : public QObject
-{
+class CacheManager : public QObject {
 public:
 
     static CacheManager& getInstance()

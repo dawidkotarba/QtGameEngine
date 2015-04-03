@@ -9,8 +9,7 @@
 #include "game/weapons/rocket.h"
 #include "game/weapons/bullet.h"
 
-class Fighter : public Item, public Controlable
-{
+class Fighter : public Item, public Controlable {
 
 public:
     Fighter();

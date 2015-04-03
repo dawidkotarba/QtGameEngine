@@ -10,8 +10,7 @@
 #include "engine/items/itemeffect.h"
 #include "engine/items/itemsmodifier.h"
 
-class ParticlesProcessor : public Item
-{
+class ParticlesProcessor : public Item {
 public:
     ParticlesProcessor(Asset asset, int count);
     ParticlesProcessor(Asset asset, int count, QPointer<Item> owner);

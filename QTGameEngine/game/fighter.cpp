@@ -3,11 +3,10 @@
 Fighter::Fighter():
     Item(Asset(PATH_FIGHTER), FIGHTER_INIT_POSITION),
     currentWeapon(WeaponsEnum(BULLET)){
+    itemId = FIGHTER;
     stopGoing();
     stopFiring();
     animationProcessor->shallRandomPictures(true);
-    itemId = FIGHTER_ID;
-    controlId = FIGHTER_CONTROL_ID;
     acceleration = FIGHTER_ACCELERATION;
     speed = FIGHTER_SPEED;
     stoppedImage = new Image(PATH_FIGHTER_STOPPED);
