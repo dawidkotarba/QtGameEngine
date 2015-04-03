@@ -201,6 +201,7 @@ void Fighter::ressurect(){
     setPos(FIGHTER_INIT_POSITION);
     resetTransforationState();
     health = 100;
+    show();
 }
 
 void Fighter::stopMoving(){
