@@ -23,10 +23,6 @@ Item::Item():
     defaultScale(1),
     defaultOpacity(1),
     defaultRotation(0),
-    boundingRectHeightDivider(1),
-    boundingRectWidthDivider(1),
-    boundingRectWidthBias(0),
-    boundingRectHeightBias(0),
     enemy(false),
     markedAsForDelete(false),
     started(false),
@@ -166,8 +162,7 @@ void Item::makeMonitor(){
 
 QRectF Item::boundingRect() const {
     if (animationProcessor)
-        return QRectF(pos().x(),pos().y(),animationProcessor->getSize().width()/boundingRectWidthDivider+boundingRectWidthBias,
-                      animationProcessor->getSize().height()/boundingRectHeightDivider+boundingRectHeightBias);
+        return QRectF(x(),y(),animationProcessor->getSize().width(), animationProcessor->getSize().height());
 
     return ITEM_ZERO_SQUARE;
 }
@@ -363,23 +358,12 @@ bool Item::isEnemy(){
     return enemy;
 }
 
-void Item::setBoundingRectDividers(qreal width, qreal height){
-    boundingRectWidthDivider = width;
-    boundingRectHeightDivider = height;
-}
-
-void Item::setBoundingRectBias(int width, int height){
-    boundingRectWidthBias = width;
-    boundingRectHeightBias = height;
-}
-
 void Item::addLightEffect(int radius, int biasX, int biasY){
     lightEffect = new ItemEffect(this, ItemEffectType(LIGHT), radius);
     lightEffect->setBias(biasX, biasY);
 }
 
 void Item::resetTransforationState(){
-    resetTransform();
     setOpacity(defaultOpacity);
     setScale(defaultScale);
     setRotation(defaultRotation);

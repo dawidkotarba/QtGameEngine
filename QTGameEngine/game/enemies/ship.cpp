@@ -17,8 +17,8 @@ Ship::~Ship(){
 }
 
 void Ship::move(){
-    qreal x = pos().x() - ENEMY_SHIP_SPEED;
-    qreal y = pos().y();
+    qreal x = this->x() - ENEMY_SHIP_SPEED;
+    qreal y = this->y();
 
     if (x < SceneUtils::getInstance().getTranslatedWidth(50)){
         y+=posYBias;
@@ -34,7 +34,7 @@ void Ship::move(){
 }
 
 void Ship::action(){
-    if (!hasFired && pos().x() < SceneUtils::getInstance().getTranslatedWidth(60)){
+    if (!hasFired && x() < SceneUtils::getInstance().getTranslatedWidth(60)){
         QPointer<EnemyRocket> rocket = new EnemyRocket(this);
         rocket->start();
         hasFired = true;

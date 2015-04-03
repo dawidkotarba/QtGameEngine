@@ -14,7 +14,7 @@ void ItemEffect::paintLightEffect(QPainter *painter){
     if (effectType != ItemEffectType(LIGHT) || painter == NULL)
         return;
 
-    QPoint updatedPos(owner->pos().x()+biasX, owner->pos().y()+biasY);
+    QPoint updatedPos(owner->x()+biasX, owner->y()+biasY);
 
     painter->setCompositionMode(QPainter::CompositionMode_Plus);
     painter->setPen(Qt::NoPen);

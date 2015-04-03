@@ -73,6 +73,7 @@ void ParticlesProcessor::advance(int step){
 
         if (particle && !particle->isVisible()){
             particle->resetTransforationState();
+            //particle->setScale(00000.1);
 
             position = calculateRelativePos(particle);
             particle->setPos(position);

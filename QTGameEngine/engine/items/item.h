@@ -75,8 +75,6 @@ public:
     bool isOutOfScene();
     void setEnemy(bool value);
     bool isEnemy();
-    void setBoundingRectDividers(qreal width, qreal height);
-    void setBoundingRectBias(int width, int height);
     void addLightEffect(int radius, int biasX = 0, int biasY = 0);
     void resetTransforationState();
     void setDefaultOpacity(qreal defaultScale);
@@ -113,10 +111,6 @@ protected:
     QPointF moveBias;
     bool started;
     bool enemy;
-    qreal boundingRectWidthDivider;
-    qreal boundingRectHeightDivider;
-    int boundingRectWidthBias;
-    int boundingRectHeightBias;
 
     // effects and transformations
     QList<ItemEffect> transformationEffects;

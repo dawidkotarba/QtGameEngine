@@ -32,7 +32,7 @@ void Weapon::start(){
 
 void Weapon::action(){
 
-    if (pos().x() > SceneUtils::getInstance().getTranslatedWidth(100))
+    if (x() > SceneUtils::getInstance().getTranslatedWidth(100))
         return;
 
     QList<QPointer<Item> > collisions = getCollidingItems();

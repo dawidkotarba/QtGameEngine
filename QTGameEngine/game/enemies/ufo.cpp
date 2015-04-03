@@ -11,7 +11,7 @@ Ufo::~Ufo(){
 }
 
 void Ufo::move(){
-    qreal x = pos().x() - ENEMY_UFO_SPEED;
+    qreal x = this->x() - ENEMY_UFO_SPEED;
     qreal y = 0;
 
     if (ENEMY_UFO_SIN_FACTOR != 0)
