@@ -137,10 +137,6 @@ void Item::addEffect(ItemEffect& effect){
     transformationEffects.append(effect);
 }
 
-QList<ItemEffect> Item::getTransformationEffects(){
-    return transformationEffects;
-}
-
 void Item::removeEffect(ItemEffectType effectType){
 
     for (int i=0; i<transformationEffects.size(); i++){
@@ -377,4 +373,13 @@ void Item::setBoundingRectBias(int width, int height){
 void Item::addLightEffect(int radius, int biasX, int biasY){
     lightEffect = new ItemEffect(this, ItemEffectType(LIGHT), radius);
     lightEffect->setBias(biasX, biasY);
+}
+
+void Item::resetTransforationState(){
+    transformationEffects.clear();
+    resetTransform();
+    setOpacity(1);
+    setScale(1);
+    setRotation(0);
+    show();
 }

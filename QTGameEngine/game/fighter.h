@@ -30,7 +30,7 @@ private:
     void initParticles();
     void die();
     void ressurect();
-    void stop();
+    void stopMoving();
     virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
 
     QPointer<ParticlesProcessor> particles;

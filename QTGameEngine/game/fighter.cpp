@@ -177,15 +177,11 @@ void Fighter::fire(){
     }
 }
 
-void Fighter::stopFiring(){
-    fireRate = 0;
-}
-
 void Fighter::die(){
 
-    if (getTransformationEffects().isEmpty()){
+    if (transformationEffects.empty()){
 
-        stop();
+        stopMoving();
         stopFiring();
 
         ItemEffect fadeAway(this, ItemEffectType(FADE), 0.02);
@@ -201,21 +197,19 @@ void Fighter::die(){
 
 void Fighter::ressurect(){
     setPos(FIGHTER_INIT_POSITION);
-    resetTransform();
+    resetTransforationState();
     health = 100;
-    particles->start();
-
-    removeEffect(ItemEffectType(FADE));
-    removeEffect(ItemEffectType(ROTATE));
-    removeEffect(ItemEffectType(SCALE));
-
 }
 
-void Fighter::stop(){
+void Fighter::stopMoving(){
     isGoingDown = false;
     isGoingUp = false;
     isGoingRight = false;
     isGoingLeft = false;
+}
+
+void Fighter::stopFiring(){
+    fireRate = 0;
 }
 
 void Fighter::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget){
@@ -224,5 +218,3 @@ void Fighter::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, Q
     else
         painter->drawImage(pos(), *stoppedImage);
 }
-
-

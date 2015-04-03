@@ -78,17 +78,7 @@ public:
     void setBoundingRectDividers(qreal width, qreal height);
     void setBoundingRectBias(int width, int height);
     void addLightEffect(int radius, int biasX = 0, int biasY = 0);
-    int getCurrentRotationAngle();
-    void setCurrentRotationAngle(int currentRotationAngle);
-    void setCurrentOpacity(qreal currentOpacity);
-    void setCurrentScale(qreal currentScale);
-    bool getShallCalculateTransformOP();
-    void setShallCalculateTransformOP(bool shallCalculateTransformOP);
-    qreal getCurrentOpacity();
-    qreal getCurrentScale();
-    qreal getInitialOpacity();
-    qreal getInitialScale();
-    QList<ItemEffect> getTransformationEffects();
+    void resetTransforationState();
 
 protected:
     void advance(int step);
