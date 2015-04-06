@@ -134,10 +134,10 @@ public:
         }
     }
 
-    bool setLightEffectColor(QList<QPointer<Item> >& items, int r, int g, int b){
+    bool setLightEffectColor(QList<QPointer<Item> >& items, QColor& color){
         bool allSuccessful = true;
         foreach(QPointer<Item> item, items)
-            allSuccessful &= item->setLightEffectColor(r, g, b);
+            allSuccessful &= item->setLightEffectColor(color);
 
         return allSuccessful;
     }

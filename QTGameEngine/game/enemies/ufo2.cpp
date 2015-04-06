@@ -1,7 +1,8 @@
 #include "ufo2.h"
 
 Ufo2::Ufo2():
-    Item(Asset(PATH_UFO_RED)){
+    Item(Asset(PATH_UFO_RED)),
+    explosionColor(255,0,0){
     setDestroyable(true);
     setEnemy(true);
 }
@@ -22,7 +23,7 @@ void Ufo2::move(){
 
 void Ufo2::die(){
 
-    particleExplosion = new ParticleExplosion(this, PATH_FIREBALL, PATH_FIREBALL2, ENEMY_UFO_PARTICLES_BIAS);
+    particleExplosion = new ParticleExplosion(this, PATH_FIREBALL, PATH_FIREBALL2, ENEMY_UFO_PARTICLES_BIAS, explosionColor);
     Item::die();
     playSound("chamb");
 }

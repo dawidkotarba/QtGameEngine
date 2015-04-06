@@ -52,7 +52,7 @@ public:
     bool isDead();
     void addEffect(ItemEffect& effect);    
     void removeEffect(ItemEffectType& effectType);
-    bool setLightEffectColor(int r, int g, int b);
+    bool setLightEffectColor(QColor& color);
     void setBiasX(qreal value);
     void setBiasY(qreal value);
     void setBias(qreal x, qreal y);

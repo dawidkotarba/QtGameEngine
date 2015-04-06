@@ -14,6 +14,7 @@ private:
     QPointer<ParticleExplosion> particleExplosion;
     void die();
     void move();
+    QColor explosionColor;
 
 };
 

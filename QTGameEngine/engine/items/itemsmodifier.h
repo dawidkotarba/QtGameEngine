@@ -84,8 +84,8 @@ public:
         ItemUtils::getInstance().addLightEffect(items, radius, biasX, biasY);
     }
 
-    bool setLightEffectColor(int r, int g, int b){
-        return ItemUtils::getInstance().setLightEffectColor(items, r, g, b);
+    bool setLightEffectColor(QColor& color){
+        return ItemUtils::getInstance().setLightEffectColor(items, color);
     }
 
 private:

@@ -18,7 +18,7 @@ public:
     void setBias(int biasX, int biasY);
     void apply(QPainter* painter = NULL);
     void setFrameDelayValue(int frameDelayValue);
-    void setLightEffectColor(int r, int g, int b);
+    void setLightEffectColor(QColor &color);
 
 private:
     ItemEffectType effectType;    
@@ -28,10 +28,7 @@ private:
     int biasX;
     int biasY;
 
-    // light colors
-    int red;
-    int green;
-    int blue;
+    QColor lightColor;
 
     void paintLightEffect(QPainter* painter);
     void rotate();

@@ -11,10 +11,7 @@ class ParticleExplosion : public ParticleExplosionDust {
 
 public:
     ParticleExplosion(QPointer<Item> owner, qreal bias = 0):
-        ParticleExplosionDust(owner, bias),
-        explRedColor(CODE_NOT_INITIALIZED),
-        explGreenColor(CODE_NOT_INITIALIZED),
-        explBlueColor(CODE_NOT_INITIALIZED){
+        ParticleExplosionDust(owner, bias){
         initFireballs(owner, PATH_FIREBALL, PATH_FIREBALL2, bias);
     }
 
@@ -23,8 +20,7 @@ public:
         initFireballs(owner, fireBallPath1, fireBallPath2, bias);
     }
 
-    ParticleExplosion(QPointer<Item> owner, const QString fireBallPath1, const QString fireBallPath2, qreal bias,
-                      int explRedColor, int explGreenColor, int explBlueColor):
+    ParticleExplosion(QPointer<Item> owner, const QString fireBallPath1, const QString fireBallPath2, qreal bias, QColor color):
         ParticleExplosionDust(owner, bias){
         initFireballs(owner, fireBallPath1, fireBallPath2, bias);
     }
@@ -38,9 +34,7 @@ private:
     QPointer<ParticlesProcessor> fireball;
     QPointer<ParticlesProcessor> fireball2;
 
-    int explRedColor;
-    int explGreenColor;
-    int explBlueColor;
+    QColor fireball2Color;
 
     void initFireballs(QPointer<Item> owner, const QString fireBallPath1, const QString fireBallPath2, qreal bias = 0){
         fireball = new ParticlesProcessor(Asset(fireBallPath1),1, owner);
@@ -64,8 +58,8 @@ private:
         fireball2->setRadius(3);
         fireball2->getItemsModifier()->addLightEffect(500,250,250);
 
-        if (explRedColor != CODE_NOT_INITIALIZED && explGreenColor != CODE_NOT_INITIALIZED && explBlueColor != CODE_NOT_INITIALIZED)
-            fireball2->getItemsModifier()->setLightEffectColor(explRedColor, explGreenColor, explBlueColor);
+        if (fireball2Color.isValid())
+            fireball2->getItemsModifier()->setLightEffectColor(fireball2Color);
 
         fireball2->start();
     }

@@ -13,7 +13,8 @@ public:
 private:
     QPointer<ParticleExplosion> particleExplosion;
     void die();
-    QPoint speed;
+    QColor explosionColor;
+    QPoint speed;    
 
 };
 

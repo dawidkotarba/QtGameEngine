@@ -140,10 +140,10 @@ void Item::addEffect(ItemEffect& effect){
         transformationEffects.append(effect);
 }
 
-bool Item::setLightEffectColor(int r, int g, int b){
+bool Item::setLightEffectColor(QColor &color){
     if (!lightEffect.isEmpty()){
         ItemEffect lightEff = lightEffect.at(0);
-        lightEff.setLightEffectColor(r, g, b);
+        lightEff.setLightEffectColor(color);
         return true;
     }
     return false;

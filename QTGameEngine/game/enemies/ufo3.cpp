@@ -2,6 +2,7 @@
 
 Ufo3::Ufo3():
     Item(Asset(PATH_UFO_GREEN)),
+    explosionColor(0,255,0),
     speed(ENEMY_UFO3_SPEED,0){
     setDestroyable(true);
     setEnemy(true);
@@ -19,7 +20,7 @@ Ufo3::~Ufo3(){
 
 void Ufo3::die(){
 
-    particleExplosion = new ParticleExplosion(this, PATH_FIREBALL, PATH_FIREBALL4, ENEMY_UFO_PARTICLES_BIAS);
+    particleExplosion = new ParticleExplosion(this, PATH_FIREBALL, PATH_FIREBALL4, ENEMY_UFO_PARTICLES_BIAS, explosionColor);
     Item::die();
     playSound("chamb");
 }
