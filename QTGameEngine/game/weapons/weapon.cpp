@@ -44,6 +44,8 @@ void Weapon::action(){
     foreach (QPointer<Item> col, collisions)
         if (col->isDestroyable() && !col->isOutOfScene()){
             col->decreaseHealth(damage);
+            QPoint recoil = WEAPON_DEFAULT_ENEMY_RECOIL;
+            col->addSpeed(recoil);
             die();
             return;
         }

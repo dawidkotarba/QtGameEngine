@@ -36,6 +36,7 @@ public:
     void setPercentPosition(QPoint& position);
     QPoint getSpeed();
     void setSpeed(QPoint& speed);
+    void addSpeed(QPoint& speed);
     int getAcceleration();
     void setAcceleration(int acceleration);
     void shallBlink(bool value, int minFrequency, int maxFrequency);
@@ -96,7 +97,6 @@ protected:
     QPoint percentPosition;
     QPoint speed;
     int acceleration;
-    QTransform transformation;
     QPointF initPos;
     bool blinks;
     int blinkMinFrequency;

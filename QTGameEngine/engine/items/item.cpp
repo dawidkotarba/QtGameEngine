@@ -282,6 +282,10 @@ QPoint Item::getSpeed(){
     return speed;
 }
 
+void Item::addSpeed(QPoint& speed){
+    this->speed+=speed;
+}
+
 void Item::setAcceleration(int acceleration){
     this->acceleration = acceleration;
 }
