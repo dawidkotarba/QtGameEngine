@@ -21,7 +21,8 @@ public:
     }
 
     ParticleExplosion(QPointer<Item> owner, const QString fireBallPath1, const QString fireBallPath2, qreal bias, QColor color):
-        ParticleExplosionDust(owner, bias){
+        ParticleExplosionDust(owner, bias),
+        fireball2Color(color){
         initFireballs(owner, fireBallPath1, fireBallPath2, bias);
     }
 
