@@ -34,7 +34,7 @@ public:
     virtual ~Item();
     virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
     void setPercentPosition(QPoint& position);
-    QPoint getSpeed();
+    QPoint& getSpeed();
     void setSpeed(QPoint& speed);
     void addSpeed(QPoint& speed);
     int getAcceleration();
@@ -50,8 +50,9 @@ public:
     void decreaseHealth(int value);
     void setHealth(int value);
     bool isDead();
-    void addEffect(ItemEffect& effect);
-    void removeEffect(ItemEffectType effectType);
+    void addEffect(ItemEffect& effect);    
+    void removeEffect(ItemEffectType& effectType);
+    bool setLightEffectColor(int r, int g, int b);
     void setBiasX(qreal value);
     void setBiasY(qreal value);
     void setBias(qreal x, qreal y);
@@ -63,7 +64,7 @@ public:
     virtual void stop();
     bool isStarted();
     void setStarted(bool value);
-    void moveEveryFrame(QPointF &point);
+    void moveEveryFrame(QPointF& point);
     void setRepeatable(bool value);
     void setInitPos(QPoint& value);
     void setRemoveWhenOut(bool value);

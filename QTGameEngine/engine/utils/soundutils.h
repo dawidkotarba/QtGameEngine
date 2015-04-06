@@ -28,7 +28,7 @@ private:
     ~SoundUtils();
 
     QList<QPointer<QMediaPlayer> > soundPlayers;
-    bool play(QPointer<QMediaPlayer> player, QString fileName, int volume = 100);
+    bool play(QPointer<QMediaPlayer> player, const QString& fileName, int volume = 100);
 };
 
 #endif // SOUNDUTILS_H

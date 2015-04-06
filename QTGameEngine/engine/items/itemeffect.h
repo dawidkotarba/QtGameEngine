@@ -12,7 +12,7 @@ class ItemEffect {
 
 public:
     ItemEffect(QGraphicsItem* owner, ItemEffectType effectType, qreal effectFactorValue = 0);
-    ItemEffectType getEffectType();
+    ItemEffectType& getEffectType();
     qreal getEffectFactorValue();
     double getFrameDelayValue();
     void setBias(int biasX, int biasY);

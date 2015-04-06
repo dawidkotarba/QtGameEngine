@@ -134,6 +134,14 @@ public:
         }
     }
 
+    bool setLightEffectColor(QList<QPointer<Item> >& items, int r, int g, int b){
+        bool allSuccessful = true;
+        foreach(QPointer<Item> item, items)
+            allSuccessful &= item->setLightEffectColor(r, g, b);
+
+        return allSuccessful;
+    }
+
 private:
     ItemUtils(){}
     ItemUtils(const ItemUtils &){}

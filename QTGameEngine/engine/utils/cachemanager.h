@@ -24,7 +24,7 @@ public:
         imageCache.insert(item->getName(), item);
     }
 
-    QPointer<CacheObject<Image> > getFromCache(QString itemPath){
+    QPointer<CacheObject<Image> > getFromCache(const QString& itemPath){
         return imageCache.value(itemPath);
     }
 

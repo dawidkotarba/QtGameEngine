@@ -17,7 +17,7 @@ float Utils::randFloat(float min, float max){
     return min + static_cast <float> (qrand()) /( static_cast <float> (RAND_MAX /(max-min)));
 }
 
-void Utils::setApplicationReference(QApplication *application){
+void Utils::setApplicationReference(QApplication* application){
     this->application = application;
 }
 
@@ -25,7 +25,7 @@ void Utils::closeApplication(){
     application->exit();
 }
 
-void Utils::playSound(QPointer<QMediaPlayer> player, QString fileName, int volume){
+void Utils::playSound(QPointer<QMediaPlayer> player, const QString& fileName, int volume){
 
     if (!player)
         player = new QMediaPlayer();

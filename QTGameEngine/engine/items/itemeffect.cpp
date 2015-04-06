@@ -41,7 +41,7 @@ void ItemEffect::setLightEffectColor(int r, int g, int b){
     blue = b;
 }
 
-ItemEffectType ItemEffect::getEffectType(){
+ItemEffectType& ItemEffect::getEffectType(){
     return effectType;
 }
 

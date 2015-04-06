@@ -17,7 +17,7 @@ public:
         clear_qptr_list(items);
     }
 
-    QString getName(){
+    QString& getName(){
         return path;
     }
 

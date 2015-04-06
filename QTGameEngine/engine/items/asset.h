@@ -30,10 +30,10 @@ public:
         qDebug() << "Updated asset path: " << assetPath << assetImgPattern << assetImgExtension;
     }
 
-    QString getPath(){return path;}
-    QString getImgPattern(){return imgPattern;}
-    int getImgCount(){return imgCount;}
-    QString getImgExtension(){return imgExtension;}
+    QString& getPath() {return path;}
+    QString& getImgPattern() {return imgPattern;}
+    int getImgCount() {return imgCount;}
+    QString& getImgExtension() {return imgExtension;}
 
 private:
     QString path;

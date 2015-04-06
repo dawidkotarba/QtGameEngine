@@ -140,7 +140,16 @@ void Item::addEffect(ItemEffect& effect){
         transformationEffects.append(effect);
 }
 
-void Item::removeEffect(ItemEffectType effectType){
+bool Item::setLightEffectColor(int r, int g, int b){
+    if (!lightEffect.isEmpty()){
+        ItemEffect lightEff = lightEffect.at(0);
+        lightEff.setLightEffectColor(r, g, b);
+        return true;
+    }
+    return false;
+}
+
+void Item::removeEffect(ItemEffectType& effectType){
 
     for (int i=0; i<transformationEffects.size(); i++){
 
@@ -278,12 +287,16 @@ void Item::setSpeed(QPoint& speed){
     this->speed = speed;
 }
 
-QPoint Item::getSpeed(){
+QPoint& Item::getSpeed(){
     return speed;
 }
 
 void Item::addSpeed(QPoint& speed){
     this->speed+=speed;
+}
+
+int Item::getAcceleration(){
+    return acceleration;
 }
 
 void Item::setAcceleration(int acceleration){

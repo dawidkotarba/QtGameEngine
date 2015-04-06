@@ -15,7 +15,7 @@ bool SoundUtils::playSound(QString fileName, int volume){
     qDebug() << "SoundPlayers increased to " << soundPlayers.size();
 }
 
-bool SoundUtils::play(QPointer<QMediaPlayer> player, QString fileName, int volume){
+bool SoundUtils::play(QPointer<QMediaPlayer> player, const QString& fileName, int volume){
     if (player){
         player->setMedia(QUrl(PATH_SOUNDS + fileName + STRING_EXT_MP3));
         player->setVolume(volume);

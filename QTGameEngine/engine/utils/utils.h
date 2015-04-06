@@ -22,7 +22,7 @@ public:
     float randFloat(float min, float max);
     void setApplicationReference(QApplication* application);
     void closeApplication();
-    void playSound(QPointer<QMediaPlayer> player, QString fileName, int volume = 100);    
+    void playSound(QPointer<QMediaPlayer> player, const QString& fileName, int volume = 100);
 
 private:
     QApplication* application;
