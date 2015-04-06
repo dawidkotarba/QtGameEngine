@@ -4,7 +4,10 @@ ItemEffect::ItemEffect(QGraphicsItem *owner, ItemEffectType effectType, qreal ef
     owner(NULL),
     frameDelayValue(1),
     biasX(0),
-    biasY(0){
+    biasY(0),
+    red(CODE_NOT_INITIALIZED),
+    green(CODE_NOT_INITIALIZED),
+    blue(CODE_NOT_INITIALIZED){
     this->owner = owner;
     this->effectType = effectType;
     this->effectFactorValue = effectFactorValue;
@@ -20,10 +23,22 @@ void ItemEffect::paintLightEffect(QPainter *painter){
     painter->setPen(Qt::NoPen);
 
     QRadialGradient light(updatedPos, effectFactorValue, updatedPos);
+
     light.setColorAt(0.0f, QColor(255,200,75,25+qrand()%75));
-    light.setColorAt(1.0f, QColor(255,255,255,0));
+
+    if (red != CODE_NOT_INITIALIZED && green != CODE_NOT_INITIALIZED && blue != CODE_NOT_INITIALIZED)
+        light.setColorAt(1.0f, QColor(red,green,blue,0));
+    else
+        light.setColorAt(1.0f, QColor(255,255,255,0));
+
     painter->setBrush(light);
     painter->drawEllipse(updatedPos,effectFactorValue,effectFactorValue);
+}
+
+void ItemEffect::setLightEffectColor(int r, int g, int b){
+    red = r;
+    green = g;
+    blue = b;
 }
 
 ItemEffectType ItemEffect::getEffectType(){
