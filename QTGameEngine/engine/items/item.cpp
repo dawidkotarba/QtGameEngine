@@ -142,8 +142,10 @@ void Item::addEffect(ItemEffect& effect){
 
 bool Item::setLightEffectColor(QColor &color){
     if (!lightEffect.isEmpty() && color.isValid()){
-        ItemEffect lightEff = lightEffect.at(0);
-        lightEff.setLightEffectColor(color);
+        ItemEffect modifiedLightEffect = lightEffect.at(0);
+        modifiedLightEffect.setLightEffectColor(color);
+        lightEffect.clear();
+        lightEffect.append(modifiedLightEffect);
         return true;
     }
     return false;

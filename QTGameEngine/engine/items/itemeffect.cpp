@@ -21,12 +21,12 @@ void ItemEffect::paintLightEffect(QPainter *painter){
 
     QRadialGradient light(updatedPos, effectFactorValue, updatedPos);
 
-    light.setColorAt(0.0f, QColor(255,200,75,25+qrand()%75));
+    light.setColorAt(1.0f, QColor(255,255,255,0));
 
     if (lightColor.isValid())
-        light.setColorAt(1.0f, lightColor);
+        light.setColorAt(0.0f, QColor(lightColor.red(),lightColor.green(),lightColor.blue(),25+qrand()%75));
     else
-        light.setColorAt(1.0f, QColor(255,255,255,0));
+        light.setColorAt(0.0f, QColor(255,200,75,25+qrand()%75));
 
     painter->setBrush(light);
     painter->drawEllipse(updatedPos,effectFactorValue,effectFactorValue);
