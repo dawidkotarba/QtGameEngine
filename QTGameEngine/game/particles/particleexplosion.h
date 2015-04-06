@@ -38,7 +38,7 @@ private:
     QColor fireball2Color;
 
     void initFireballs(QPointer<Item> owner, const QString fireBallPath1, const QString fireBallPath2, qreal bias = 0){
-        fireball = new ParticlesProcessor(Asset(fireBallPath1),1, owner);
+        fireball = new ParticlesProcessor(Asset(fireBallPath1),2, owner);
         fireball->getItemsModifier()->setBias(bias,bias);
         fireball->getItemsModifier()->applyRotateEffect(5,5,true);
         fireball->getItemsModifier()->setDefaultScale(0.1);
@@ -47,16 +47,18 @@ private:
         fireball->getItemsModifier()->moveEveryFrame(const_cast<QPointF&>(MOVE_LEFT_1));
         fireball->getItemsModifier()->addLightEffect(500,250,250);
         fireball->setLooping(false);
+        fireball->setRadius(50);
         fireball->start();
 
-        fireball2 = new ParticlesProcessor(Asset(fireBallPath2),1, owner);
+        fireball2 = new ParticlesProcessor(Asset(fireBallPath2),2, owner);
         fireball2->getItemsModifier()->setBias(bias,bias);
+        fireball2->getItemsModifier()->applyRotateEffect(2,3,true);
         fireball2->getItemsModifier()->setDefaultScale(0.1);
         fireball2->getItemsModifier()->applyScaleEffect(0.05, 0.10);
         fireball2->getItemsModifier()->applyFadeEffect(0.02, 0.08);
         fireball2->getItemsModifier()->moveEveryFrame(const_cast<QPointF&>(MOVE_LEFT_1));
         fireball2->setLooping(false);
-        fireball2->setRadius(3);
+        fireball2->setRadius(50);
         fireball2->getItemsModifier()->addLightEffect(500,250,250);
 
         if (fireball2Color.isValid())
