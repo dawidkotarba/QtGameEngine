@@ -97,20 +97,16 @@ void Fighter::controlKeyPress(QKeyEvent* event){
 
         switch(event->key()){
         case Qt::Key_Up:
-            isGoingUp = true;
-            isGoingDown = false;
+            goUp();
             break;
         case Qt::Key_Left:
-            isGoingLeft = true;
-            isGoingRight = false;
+            goLeft();
             break;
         case Qt::Key_Right:
-            isGoingRight = true;
-            isGoingLeft = false;
+            goRight();
             break;
         case Qt::Key_Down:
-            isGoingDown = true;
-            isGoingUp = false;
+            goDown();
             break;
         case Qt::Key_Control:
             currentWeapon = WeaponsEnum(ROCKET);
@@ -156,6 +152,26 @@ void Fighter::controlKeyRelease(QKeyEvent* event){
 
         event->accept();
     }
+}
+
+void Fighter::goUp(){
+    isGoingUp = true;
+    isGoingDown = false;
+}
+
+void Fighter::goDown(){
+    isGoingDown = true;
+    isGoingUp = false;
+}
+
+void Fighter::goRight(){
+    isGoingRight = true;
+    isGoingLeft = false;
+}
+
+void Fighter::goLeft(){
+    isGoingLeft = true;
+    isGoingRight = false;
 }
 
 void Fighter::fire(){

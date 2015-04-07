@@ -23,6 +23,11 @@ public:
     void stopFiring();
     bool isMoving();
 
+    void goUp();
+    void goDown();
+    void goRight();
+    void goLeft();
+
 private:
     void move();
     void action();
