@@ -49,4 +49,8 @@ const QPointF MOVE_LEFT_1(-1, 0);
 const QPointF MOVE_LEFT_2(-2, 0);
 const QPointF MOVE_LEFT_3(-3, 0);
 
+// EFFECTS CONTS
+const QColor COLOR_WHITE_TRANSPARENT(255,255,255,0);
+const QColor COLOR_LIGHT_YELLOW(255,200,75);
+
 #endif // CONSTANTS_H

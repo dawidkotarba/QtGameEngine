@@ -31,6 +31,9 @@ private:
     QColor lightColor;
 
     void paintLightEffect(QPainter* painter);
+    int randomLightAlpha();
+    void updateInnerLightColor(QRadialGradient& radialGradient);
+    void updateOuterLightColor(QRadialGradient& radialGradient, const QColor& lightColor);
     void rotate();
     void fadeAway();
     void scale();
