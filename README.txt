@@ -9,3 +9,7 @@ http://soundbible.com/1367-Grenade.html - bomb2.mp3 L: Sampling Plus 1.0, record
 http://soundbible.com/1769-Laser-Gun.html - laser2.mp3 L: CC BY 3.0, recorded by Mike Koenig
 http://soundbible.com/682-Swoosh-1.html - swoosh.mp3 L: Sampling Plus 1.0, recorded by man
 http://soundbible.com/1288-Chamber-Decompressing.html - chamb.mp3 L: CC BY 3.0, recorded by Mike Koenig
+
+Licences for sound resources:
+https://creativecommons.org/licenses/by/3.0/pl/legalcode
+https://creativecommons.org/licenses/sampling+/1.0/legalcode
