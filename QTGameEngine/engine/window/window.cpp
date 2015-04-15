@@ -69,7 +69,7 @@ void Window::keyReleaseEvent(QKeyEvent* event){
 void Window::initActors(){
 
     fighter = new Fighter();
-    inputController.setControlableItem(fighter);
+    inputController.addControlable(fighter);
     fighter->start();
 
     enemiesAsteroid = new ItemSpawner<Asteroid>(30,500,SceneUtils::getInstance().getTranslatedWidth(25), QPoint(SceneUtils::getInstance().getTranslatedWidth(50),SceneUtils::getInstance().getTranslatedHeight(50)));
@@ -89,14 +89,14 @@ void Window::initActors(){
 }
 
 void Window::deleteActors(){
-    qDebug() <<  "Deleting actors:";
+    qDebug() << "Deleting actors:";
     clear_qptr(fighter);
     clear_qptr(enemiesUfo);
     clear_qptr(enemiesUfo2);
     clear_qptr(enemiesUfo3);
     clear_qptr(enemiesShip);
     clear_qptr(enemiesAsteroid);
-    qDebug() <<  "Actors deleted";
+    qDebug() << "Actors deleted";
 }
 
 void Window::initBackgroundEnvironment(){

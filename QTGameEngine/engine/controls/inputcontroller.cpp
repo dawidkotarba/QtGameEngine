@@ -2,8 +2,9 @@
 #include "engine/utils/utils.h"
 
 void InputController::controlKeyPress(QKeyEvent* event){
-    if (controlableItem != NULL)
-        controlableItem->controlKeyPress(event);
+    if (!controlableItems.isEmpty())
+        foreach (Controlable* item, controlableItems)
+            item->controlKeyPress(event);
 
     switch(event->key()){
     case Qt::Key_Escape:
@@ -19,12 +20,13 @@ void InputController::controlKeyRelease(QKeyEvent* event){
         return;
     }
 
-    if (controlableItem != NULL)
-        controlableItem->controlKeyRelease(event);
+    if (!controlableItems.isEmpty())
+        foreach (Controlable* item, controlableItems)
+            item->controlKeyRelease(event);
 
     event->accept();
 }
 
-void InputController::setControlableItem(Controlable* item){
-    controlableItem = item;
+void InputController::addControlable(Controlable* controlable){
+    controlableItems.append(controlable);
 }

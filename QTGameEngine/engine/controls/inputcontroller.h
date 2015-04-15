@@ -8,12 +8,12 @@
 
 class InputController
 {
-    Controlable* controlableItem;
+    QList<Controlable*> controlableItems;
 
 public:
     void controlKeyPress(QKeyEvent* event);
     void controlKeyRelease(QKeyEvent* event);
-    void setControlableItem(Controlable* item);
+    void addControlable(Controlable* controlable);
 };
 
 #endif // IO_H
