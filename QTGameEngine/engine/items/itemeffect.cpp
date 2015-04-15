@@ -43,7 +43,7 @@ void ItemEffect::updateOuterLightColor(QRadialGradient& radialGradient,const QCo
 }
 
 int ItemEffect::randomLightAlpha(){
-    return 25+qrand()%75;
+    return Utils::getInstance().randInt(25,100);
 }
 
 void ItemEffect::setLightEffectColor(QColor& color){

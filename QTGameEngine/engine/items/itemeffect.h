@@ -7,6 +7,7 @@
 #include <QPainter>
 #include "engine/utils/timerutils.h"
 #include "engine/enums/enums.h"
+#include "engine/utils/utils.h"
 
 class ItemEffect {
 
