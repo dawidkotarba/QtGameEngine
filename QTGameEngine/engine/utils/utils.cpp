@@ -24,15 +24,3 @@ void Utils::setApplicationReference(QApplication* application){
 void Utils::closeApplication(){
     application->exit();
 }
-
-void Utils::playSound(QPointer<QMediaPlayer> player, const QString& fileName, int volume){
-
-    if (!player)
-        player = new QMediaPlayer();
-
-    if (player->state() != QMediaPlayer::PlayingState){
-        player->setMedia(QUrl(PATH_SOUNDS + fileName + STRING_EXT_MP3));
-        player->setVolume(volume);
-        player->play();
-    }
-}
