@@ -7,7 +7,7 @@ Ship::Ship():
     setDestroyable(true);
     setEnemy(true);
     setHealth(ENEMY_SHIP_HEALTH);
-    posYBias = Utils::getInstance().randInt(-5, 5);
+    posYOffset = Utils::getInstance().randInt(-5, 5);
     getAnimationProcessor()->setLooping(true);
     initParticles();
 }
@@ -21,7 +21,7 @@ void Ship::move(){
     qreal y = this->y();
 
     if (x < SceneUtils::getInstance().getTranslatedWidth(50)){
-        y+=posYBias;
+        y+=posYOffset;
         x-=2;
 
         if (itemEffect == NULL){

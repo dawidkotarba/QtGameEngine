@@ -9,12 +9,12 @@
 class ParticleExplosionDust: public QObject
 {
 public:
-    ParticleExplosionDust(QPointer<Item> owner, qreal bias = 0){
+    ParticleExplosionDust(QPointer<Item> owner, qreal offset = 0){
 
         QPointF dustMove(-1,-1);
 
         dust = new ParticlesProcessor(Asset(PATH_DUST),3, owner);
-        dust->getItemsModifier()->setOffset(bias,bias);
+        dust->getItemsModifier()->setOffset(offset,offset);
         dust->getItemsModifier()->applyRotateEffect(5,10,true);
         dust->getItemsModifier()->setDefaultScale(0.1);
         dust->getItemsModifier()->applyScaleEffect(0.01, 0.04);
@@ -25,7 +25,7 @@ public:
         dust->start();
 
         dust2 = new ParticlesProcessor(Asset(PATH_STEAM),2, owner);
-        dust2->getItemsModifier()->setOffset(bias,bias);
+        dust2->getItemsModifier()->setOffset(offset,offset);
         dust2->getItemsModifier()->applyRotateEffect(2,3,true);
         dust2->getItemsModifier()->setDefaultScale(0.1);
         dust2->getItemsModifier()->applyScaleEffect(0.01, 0.04);

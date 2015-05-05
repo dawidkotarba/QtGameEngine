@@ -10,20 +10,20 @@
 class ParticleExplosion : public ParticleExplosionDust {
 
 public:
-    ParticleExplosion(QPointer<Item> owner, qreal bias = 0):
-        ParticleExplosionDust(owner, bias){
-        initFireballs(owner, PATH_FIREBALL, PATH_FIREBALL2, bias);
+    ParticleExplosion(QPointer<Item> owner, qreal offset = 0):
+        ParticleExplosionDust(owner, offset){
+        initFireballs(owner, PATH_FIREBALL, PATH_FIREBALL2, offset);
     }
 
-    ParticleExplosion(QPointer<Item> owner, const QString fireBallPath1, const QString fireBallPath2, qreal bias = 0):
-        ParticleExplosionDust(owner, bias){
-        initFireballs(owner, fireBallPath1, fireBallPath2, bias);
+    ParticleExplosion(QPointer<Item> owner, const QString fireBallPath1, const QString fireBallPath2, qreal offset = 0):
+        ParticleExplosionDust(owner, offset){
+        initFireballs(owner, fireBallPath1, fireBallPath2, offset);
     }
 
-    ParticleExplosion(QPointer<Item> owner, const QString fireBallPath1, const QString fireBallPath2, qreal bias, QColor color):
-        ParticleExplosionDust(owner, bias),
+    ParticleExplosion(QPointer<Item> owner, const QString fireBallPath1, const QString fireBallPath2, qreal offset, QColor color):
+        ParticleExplosionDust(owner, offset),
         fireball2Color(color){
-        initFireballs(owner, fireBallPath1, fireBallPath2, bias);
+        initFireballs(owner, fireBallPath1, fireBallPath2, offset);
     }
 
     virtual ~ParticleExplosion(){
@@ -37,9 +37,9 @@ private:
 
     QColor fireball2Color;
 
-    void initFireballs(QPointer<Item> owner, const QString fireBallPath1, const QString fireBallPath2, qreal bias = 0){
+    void initFireballs(QPointer<Item> owner, const QString fireBallPath1, const QString fireBallPath2, qreal offset = 0){
         fireball = new ParticlesProcessor(Asset(fireBallPath1),2, owner);
-        fireball->getItemsModifier()->setOffset(bias,bias);
+        fireball->getItemsModifier()->setOffset(offset,offset);
         fireball->getItemsModifier()->applyRotateEffect(5,5,true);
         fireball->getItemsModifier()->setDefaultScale(0.1);
         fireball->getItemsModifier()->applyScaleEffect(0.04, 0.04);
@@ -51,7 +51,7 @@ private:
         fireball->start();
 
         fireball2 = new ParticlesProcessor(Asset(fireBallPath2),2, owner);
-        fireball2->getItemsModifier()->setOffset(bias,bias);
+        fireball2->getItemsModifier()->setOffset(offset,offset);
         fireball2->getItemsModifier()->applyRotateEffect(2,3,true);
         fireball2->getItemsModifier()->setDefaultScale(0.1);
         fireball2->getItemsModifier()->applyScaleEffect(0.05, 0.10);
