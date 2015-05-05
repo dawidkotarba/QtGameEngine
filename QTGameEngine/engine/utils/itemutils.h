@@ -95,9 +95,9 @@ public:
             item->setPos(pos);
     }
 
-    void setBias(QList<QPointer<Item> >& items, qreal x, qreal y){
+    void setOffset(QList<QPointer<Item> >& items, qreal x, qreal y){
         foreach(QPointer<Item> item, items)
-            item->setBias(x, y);
+            item->setOffset(x, y);
     }
 
     void setDestroyable(QList<QPointer<Item> >& items, bool value){
@@ -125,11 +125,11 @@ public:
             item->shallBlink(value, minFrequency, maxFrequency);
     }
 
-    void addLightEffect(QList<QPointer<Item> >& items, int radius, int biasX = 0, int biasY = 0){
+    void addLightEffect(QList<QPointer<Item> >& items, int radius, int offsetX = 0, int offsetY = 0){
         foreach(QPointer<Item> item, items){
 
             ItemEffect lightEffect(item, ItemEffectType(LIGHT), radius);
-            lightEffect.setBias(biasX, biasY);
+            lightEffect.setOffset(offsetX, offsetY);
             item->addEffect(lightEffect);
         }
     }

@@ -23,7 +23,7 @@ void Ufo2::move(){
 
 void Ufo2::die(){
 
-    particleExplosion = new ParticleExplosion(this, PATH_FIREBALL, PATH_FIREBALL2, ENEMY_UFO_PARTICLES_BIAS, explosionColor);
+    particleExplosion = new ParticleExplosion(this, PATH_FIREBALL, PATH_FIREBALL2, ENEMY_UFO_PARTICLES_OFFSET, explosionColor);
     Item::die();
     playSound("chamb");
 }

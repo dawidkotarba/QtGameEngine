@@ -16,7 +16,7 @@ public:
     ItemEffectType& getEffectType();
     qreal getEffectFactorValue();
     double getFrameDelayValue();
-    void setBias(int biasX, int biasY);
+    void setOffset(int offsetX, int offsetY);
     void apply(QPainter* painter = NULL);
     void setFrameDelayValue(int frameDelayValue);
     void setLightEffectColor(QColor &color);
@@ -26,8 +26,8 @@ private:
     qreal effectFactorValue; // angle: rotation, speed: scale, rotate, light: radius
     int frameDelayValue;
     QGraphicsItem* owner;
-    int biasX;
-    int biasY;
+    int offsetX;
+    int offsetY;
 
     QColor lightColor;
 

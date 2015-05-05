@@ -20,7 +20,7 @@ Fighter::~Fighter(){
 
 void Fighter::initParticles(){
     particles = new ParticlesProcessor(Asset(PATH_STEAM_S), 30, this);
-    particles->getItemsModifier()->setBias(FIGHTER_PARTICLES_BIAS_X, FIGHTER_PARTICLES_BIAS_Y);
+    particles->getItemsModifier()->setOffset(FIGHTER_PARTICLES_OFFSET_X, FIGHTER_PARTICLES_OFFSET_Y);
     particles->getItemsModifier()->setDefaultScale(0.1);
     particles->getItemsModifier()->applyRotateEffect(2, 20, true);
     particles->getItemsModifier()->applyFadeEffect(0.04, 0.05);

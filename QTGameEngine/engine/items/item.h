@@ -53,11 +53,11 @@ public:
     void addEffect(ItemEffect& effect);    
     void removeEffect(ItemEffectType& effectType);
     bool setLightEffectColor(QColor& color);
-    void setBiasX(qreal value);
-    void setBiasY(qreal value);
-    void setBias(qreal x, qreal y);
-    qreal getBiasX();
-    qreal getBiasY();
+    void setOffsetX(qreal value);
+    void setOffsetY(qreal value);
+    void setOffset(qreal x, qreal y);
+    qreal getOffset();
+    qreal getOffsetY();
     void setDestroyable(bool value);
     bool isDestroyable();
     virtual void start();
@@ -105,9 +105,9 @@ protected:
     int itemId;
     bool monitor;
     int health;
-    qreal biasX;
-    qreal biasY;
-    QPointF moveBias;
+    qreal offsetX;
+    qreal offsetY;
+    QPointF moveOffset;
     bool started;
     bool enemy;
 

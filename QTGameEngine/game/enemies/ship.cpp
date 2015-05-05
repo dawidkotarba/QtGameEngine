@@ -42,7 +42,7 @@ void Ship::action(){
 }
 
 void Ship::die(){
-    explosion = new ParticleExplosion(this, ENEMY_SHIP_PARTICLES_BIAS);
+    explosion = new ParticleExplosion(this, ENEMY_SHIP_PARTICLES_OFFSET);
     particles->setLooping(false);
     Item::die();
     playSound("bomb");
@@ -50,7 +50,7 @@ void Ship::die(){
 
 void Ship::initParticles(){
     particles = new ParticlesProcessor(Asset(PATH_STEAM), 10, this);
-    particles->getItemsModifier()->setBias(20, -30);
+    particles->getItemsModifier()->setOffset(20, -30);
     particles->getItemsModifier()->setDefaultScale(0.2);
     particles->getItemsModifier()->applyRotateEffect(5, 5, true);
     particles->getItemsModifier()->applyFadeEffect(0.04, 0.05);

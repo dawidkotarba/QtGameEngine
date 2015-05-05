@@ -69,8 +69,8 @@ void ParticlesProcessor::advance(int step){
         particle->setPos(position);
 
         if (radius > 0){
-            int radiusBias = Utils::getInstance().randInt(-radius,radius);
-            particle->moveBy(radiusBias, radiusBias);
+            int radiusOffset = Utils::getInstance().randInt(-radius,radius);
+            particle->moveBy(radiusOffset, radiusOffset);
         }
 
         particle->setStarted(true);
@@ -83,8 +83,8 @@ void ParticlesProcessor::advance(int step){
 
 QPointF ParticlesProcessor::calculateRelativePos(QPointer<Item> particle){
     if (owner){
-        qreal posX = owner->x() + particle->getBiasX();
-        qreal posY = owner->y() + particle->getBiasY();
+        qreal posX = owner->x() + particle->getOffset();
+        qreal posY = owner->y() + particle->getOffsetY();
         position = QPointF(posX, posY);
     }
 

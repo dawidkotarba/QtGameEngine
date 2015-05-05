@@ -64,8 +64,8 @@ public:
        ItemUtils::getInstance().setPos(items, pos);
     }
 
-    void setBias(qreal x, qreal y){
-        ItemUtils::getInstance().setBias(items, x, y);
+    void setOffset(qreal x, qreal y){
+        ItemUtils::getInstance().setOffset(items, x, y);
     }
 
     void setDestroyable(bool value){
@@ -80,8 +80,8 @@ public:
         ItemUtils::getInstance().shallBlink(items, value, minFrequency, maxFrequency);
     }
 
-    void addLightEffect(int radius, int biasX = 0, int biasY = 0){
-        ItemUtils::getInstance().addLightEffect(items, radius, biasX, biasY);
+    void addLightEffect(int radius, int offsetX = 0, int offsetY = 0){
+        ItemUtils::getInstance().addLightEffect(items, radius, offsetX, offsetY);
     }
 
     bool setLightEffectColor(QColor& color){

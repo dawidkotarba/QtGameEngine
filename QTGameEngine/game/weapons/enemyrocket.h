@@ -11,10 +11,10 @@ public:
         Rocket(owner){
         QPoint speed(ENEMY_WEAPON_ROCKET_SPEED,0);
         setSpeed(speed);
-        setBias(ENEMY_WEAPON_ROCKET_BIAS_X, ENEMY_WEAPON_ROCKET_BIAS_Y);
+        setOffset(ENEMY_WEAPON_ROCKET_OFFSET_X, ENEMY_WEAPON_ROCKET_OFFSET_Y);
 
         ItemEffect lightEffect(this, ItemEffectType(LIGHT), 100);
-        lightEffect.setBias(50, 10);
+        lightEffect.setOffset(50, 10);
         addEffect(lightEffect);
     }
 

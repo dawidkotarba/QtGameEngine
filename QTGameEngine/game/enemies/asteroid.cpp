@@ -33,7 +33,7 @@ void Asteroid::die(){
     QPointF dustMove(-1,0);
     dustPuff = new ParticlesProcessor(Asset(PATH_BROWN_DUST), 3, this);
     dustPuff->setRadius(15);
-    dustPuff->getItemsModifier()->setBias(-25,-25);
+    dustPuff->getItemsModifier()->setOffset(-25,-25);
     dustPuff->getItemsModifier()->applyFadeEffect(0.03, 0.04);
     dustPuff->getItemsModifier()->applyScaleEffect(0.02, 0.03);
     dustPuff->getItemsModifier()->applyRotateEffect(1,5, true);
@@ -56,7 +56,7 @@ void Asteroid::spawnChildren(int countPerSize){
     }
 
     foreach (QPointer<Asteroid> child , children){
-        child->setBias(30,30);
+        child->setOffset(30,30);
         QPointF move(Utils::getInstance().randFloat(-3,3),Utils::getInstance().randFloat(-3,3));
         child->moveEveryFrame(move);
         child->start();

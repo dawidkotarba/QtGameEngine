@@ -7,17 +7,17 @@ Item::Item():
     animationProcessor(NULL),
     monitor(0),
     initPos(ITEM_ZERO_POS),
-    moveBias(ITEM_ZERO_POS),
+    moveOffset(ITEM_ZERO_POS),
     destroyable(false),
     health(ITEM_MAX_HEALTH),
     acceleration(0),
     speed(ITEM_ZERO_POS),
     shallRemoveWhenOut(false),
-    biasX(0),
+    offsetX(0),
     blinks(false),
     blinkMinFrequency(0),
     blinkMaxFrequency(0),
-    biasY(0),
+    offsetY(0),
     repeatable(false),
     forcePaint(false),
     defaultScale(1),
@@ -66,7 +66,7 @@ bool Item::isStarted(){
 }
 
 void Item::moveEveryFrame(QPointF& point){
-    moveBias = point;
+    moveOffset = point;
 }
 
 QPointer<AnimationProcessor> Item::getAnimationProcessor(){
@@ -112,7 +112,7 @@ void Item::advance(int step){
     setTransformOriginPoint(calculateTransformOriginPoint());
 
     move();
-    moveBy(moveBias.x(), moveBias.y());
+    moveBy(moveOffset.x(), moveOffset.y());
 
     foreach(ItemEffect effect, transformationEffects)
         effect.apply();
@@ -309,27 +309,27 @@ void Item::playSound(const QString& fileName, int volume){
     SoundUtils::getInstance().playSound(fileName, volume);
 }
 
-void Item::setBias(qreal x, qreal y){
-    setBiasX(x);
-    setBiasY(y);
+void Item::setOffset(qreal x, qreal y){
+    setOffsetX(x);
+    setOffsetY(y);
 }
 
-void Item::setBiasX(qreal value){
-    biasX = value;
-    setPos(x() + biasX, y());
+void Item::setOffsetX(qreal value){
+    offsetX = value;
+    setPos(x() + offsetX, y());
 }
 
-void Item::setBiasY(qreal value){
-    biasY = value;
-    setPos(x(), y() + biasY);
+void Item::setOffsetY(qreal value){
+    offsetY = value;
+    setPos(x(), y() + offsetY);
 }
 
-qreal Item::getBiasX(){
-    return biasX;
+qreal Item::getOffset(){
+    return offsetX;
 }
 
-qreal Item::getBiasY(){
-    return biasY;
+qreal Item::getOffsetY(){
+    return offsetY;
 }
 
 void Item::setRepeatable(bool value){

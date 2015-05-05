@@ -39,7 +39,7 @@ private:
 
     void initFireballs(QPointer<Item> owner, const QString fireBallPath1, const QString fireBallPath2, qreal bias = 0){
         fireball = new ParticlesProcessor(Asset(fireBallPath1),2, owner);
-        fireball->getItemsModifier()->setBias(bias,bias);
+        fireball->getItemsModifier()->setOffset(bias,bias);
         fireball->getItemsModifier()->applyRotateEffect(5,5,true);
         fireball->getItemsModifier()->setDefaultScale(0.1);
         fireball->getItemsModifier()->applyScaleEffect(0.04, 0.04);
@@ -51,7 +51,7 @@ private:
         fireball->start();
 
         fireball2 = new ParticlesProcessor(Asset(fireBallPath2),2, owner);
-        fireball2->getItemsModifier()->setBias(bias,bias);
+        fireball2->getItemsModifier()->setOffset(bias,bias);
         fireball2->getItemsModifier()->applyRotateEffect(2,3,true);
         fireball2->getItemsModifier()->setDefaultScale(0.1);
         fireball2->getItemsModifier()->applyScaleEffect(0.05, 0.10);

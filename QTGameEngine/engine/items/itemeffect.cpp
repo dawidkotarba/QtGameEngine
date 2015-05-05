@@ -3,8 +3,8 @@
 ItemEffect::ItemEffect(QGraphicsItem *owner, ItemEffectType effectType, qreal effectFactorValue):
     owner(NULL),
     frameDelayValue(1),
-    biasX(0),
-    biasY(0){
+    offsetX(0),
+    offsetY(0){
     this->owner = owner;
     this->effectType = effectType;
     this->effectFactorValue = effectFactorValue;
@@ -14,7 +14,7 @@ void ItemEffect::paintLightEffect(QPainter *painter){
     if (effectType != ItemEffectType(LIGHT) || painter == NULL)
         return;
 
-    QPoint updatedPos(owner->x()+biasX, owner->y()+biasY);
+    QPoint updatedPos(owner->x()+offsetX, owner->y()+offsetY);
 
     painter->setCompositionMode(QPainter::CompositionMode_Plus);
     painter->setPen(Qt::NoPen);
@@ -62,9 +62,9 @@ double ItemEffect::getFrameDelayValue(){
     return frameDelayValue;
 }
 
-void ItemEffect::setBias(int biasX, int biasY){
-    this->biasX = biasX;
-    this->biasY = biasY;
+void ItemEffect::setOffset(int offsetX, int offsetY){
+    this->offsetX = offsetX;
+    this->offsetY = offsetY;
 }
 
 void ItemEffect::apply(QPainter* painter){
