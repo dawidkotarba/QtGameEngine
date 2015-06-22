@@ -15,7 +15,7 @@ public:
         return instance;
     }
 
-    void makeVisible(QList<QPointer<Item> >& items, boolean condition){
+    void makeVisible(QList<QPointer<Item> >& items, bool condition){
         foreach(QPointer<Item> item, items)
             condition ? item->show() : item->hide();
     }
@@ -80,12 +80,12 @@ public:
             item->start();
     }
 
-    void setVisible(QList<QPointer<Item> >& items, boolean value){
+    void setVisible(QList<QPointer<Item> >& items, bool value){
         foreach(QPointer<Item> item, items)
             item->setVisible(value);
     }
 
-    void setStarted(QList<QPointer<Item> >& items, boolean value){
+    void setStarted(QList<QPointer<Item> >& items, bool value){
         foreach(QPointer<Item> item, items)
             item->setStarted(value);
     }

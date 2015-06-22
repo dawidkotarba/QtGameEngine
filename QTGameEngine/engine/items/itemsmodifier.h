@@ -12,7 +12,7 @@ public:
         qDebug() << "Attaching items: " << items.size();
     }
 
-    void makeVisible(boolean condition){
+    void makeVisible(bool condition){
         ItemUtils::getInstance().makeVisible(items, condition);
     }
 
@@ -52,11 +52,11 @@ public:
         ItemUtils::getInstance().start(items);
     }
 
-    void setVisible(boolean value){
+    void setVisible(bool value){
        ItemUtils::getInstance().setVisible(items, value);
     }
 
-    void setStarted(boolean value){
+    void setStarted(bool value){
        ItemUtils::getInstance().setStarted(items, value);
     }
 
